@@ -1,0 +1,6 @@
+{
+  "Message": "An error has occurred.",
+  "ExceptionMessage": "order-history-export: there should be at least one filter (or CustomerId or CustomerEmail or SalesOrderNo) is set",
+  "ExceptionType": "Teamwork.AdminServer.Api.Services.Controller.ChqApiControllerException",
+  "StackTrace": null
+}

@@ -1,0 +1,141 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  customerID?: string
+  isInactive?: boolean
+  memberCode?: string
+  magentoID?: string
+  externalID?: string
+  preferredLocationCode?: string
+  preferredLocationID?: string
+  membershipLevelID?: string
+  membershipLevelName?: string
+  membershipType?: string
+  membershipEndDate?: number
+  overrideMembershipLevelID?: string
+  overrideMembershipLevelName?: string
+  overrideMembershipEndDate?: number
+  password?: string
+  email1?:
+    type: object
+    properties:
+      email?: string
+      acceptMarketing?: boolean
+      acceptTransactional?: boolean
+  email2?:
+    type: object
+    properties:
+      email?: string
+      acceptMarketing?: boolean
+      acceptTransactional?: boolean
+  email3?:
+    type: object
+    properties:
+      email?: string
+      acceptMarketing?: boolean
+      acceptTransactional?: boolean
+  phone1?:
+    type: object
+    properties:
+      number?: string
+  phone2?:
+    type: object
+    properties:
+      number?: string
+  phone3?:
+    type: object
+    properties:
+      number?: string
+  phone4?:
+    type: object
+    properties:
+      number?: string
+  title?: string
+  firstName?: string
+  middleName?: string
+  lastName?: string
+  suffix?: string
+  gender?: number
+  birthDay?: number
+  birthMonth?: number
+  birthYear?: number
+  priceLevelCode?: string
+  organization?: string
+  VATRegistrationNumber?: string
+  isTaxExempt?: boolean
+  isEmployee?: boolean
+  isCompany?: boolean
+  addresses?:
+    type: array
+    items: !include customerAddressSchema.raml
+  contacts?:
+    type: array
+    items: !include customerContactsSchema.raml
+  defaultShippingAddressID?: string
+  defaultBillingAddressID?: string
+  primaryContactID?: string
+  isLRP1ConversionDisabled?: boolean
+  isLRP2ConversionDisabled?: boolean
+  largeMemo?: string
+  defaultGiftcardID?: string
+  customGuid1?: string
+  customGuid2?: string
+  customGuid3?: string
+  customGuid4?: string
+  customGuid5?: string
+  customGuid6?: string
+  customGuid7?: string
+  customGuid8?: string
+  customGuid9?: string
+  customGuid10?: string
+  customGuid11?: string
+  customGuid12?: string
+  customLookup1?: string
+  customLookup2?: string
+  customLookup3?: string
+  customLookup4?: string
+  customLookup5?: string
+  customLookup6?: string
+  customLookup7?: string
+  customLookup8?: string
+  customLookup9?: string
+  customLookup10?: string
+  customLookup11?: string
+  customLookup12?: string
+  customNumber1?: number
+  customNumber2?: number
+  customNumber3?: number
+  customNumber4?: number
+  customNumber5?: number
+  customNumber6?: number
+  customDecimal1?: string
+  customDecimal2?: string
+  customDecimal3?: string
+  customDecimal4?: string
+  customDecimal5?: string
+  customDecimal6?: string
+  customText1?: string
+  customText2?: string
+  customText3?: string
+  customText4?: string
+  customText5?: string
+  customText6?: string
+  customFlag1?: boolean
+  customFlag2?: boolean
+  customFlag3?: boolean
+  customFlag4?: boolean
+  customFlag5?: boolean
+  customFlag6?: boolean
+  customDate1?: number
+  customDate2?: number
+  customDate3?: number
+  customDate4?: number
+  customDate5?: number
+  customDate6?: number
+  accountStatusID?: string
+  creationDate?: number
+  editDate?: number
+  linkByExternalID?: boolean
+  linkBillingAddress?: boolean
+  linkShippingAddress?: boolean

@@ -1,0 +1,8 @@
+{
+  "name": "test",
+  "regPrice": "12.5",
+  "salePrice": "13.5",
+  "Uuid": "testUuid",
+  "sku": "456464431",
+  "type": "productType"
+}

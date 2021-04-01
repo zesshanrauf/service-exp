@@ -1,0 +1,68 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  giftcardID:
+    description: Gift Card ID.
+    required: true
+    type: string
+  amount:
+    description: Amount
+    required: true	
+    type: string 
+  locationID:
+    description: Location ID
+    required: false
+    type: string 
+  locationCode:
+    description: Location Code
+    required: false
+    type: string
+  pin:
+    description: Pin
+    required: false
+    type: string
+  isReturn:
+    description: Is Return
+    required: false
+    type: boolean 
+  isRefund:
+    description: Is Refund
+    required: false
+    type: boolean 
+  referenceNum:
+    description: Reference Number
+    required: false
+    type: string
+  description:
+    description: Description
+    required: false
+    type: string
+  timezoneOffset:
+    description: Local timezone offset from UTC in seconds. UTC (zero offset) is assumed is omitted
+    required: false
+    type: number 
+  customData1:
+    description: Additional Information
+    required: false
+    type: string
+  customData2:
+    description: Additional Information
+    required: false
+    type: string
+  customData3:
+    description: Additional Information
+    required: false
+    type: string
+  customData4:
+    description: Additional Information
+    required: false
+    type: string
+  customData5:
+    description: Additional Information
+    required: false
+    type: string
+  webOrderNumber:
+    description: Web Order Number
+    required: false
+    type: string

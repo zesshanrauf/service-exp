@@ -1,0 +1,30 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  Source: string
+  Data:
+    type: object
+    properties:
+      ApiDocumentId:
+        type: string
+        pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      Request:
+        type: object
+        properties:
+          Filters:
+            type: array
+            items: !include historyFiltersItems.raml
+          SortDescriptions:
+            type: array
+            items: !include historySHortDescriptions.raml
+          Top:
+            type: integer
+            minimum: 0
+            maximum: 2147483647
+            default: 2147483647
+          Skip:
+            type: integer
+            minimum: 0
+            maximum: 2147483647
+            default: 0

@@ -1,0 +1,91 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  giftcardID:
+    description: ID for a Gift Card to create.
+    required: true
+    type: string
+  customerID:
+    description: Customer ID
+    required: false
+    type: string 
+  contactID:
+    description: Contact ID
+    required: false
+    type: string	
+  locationID:
+    description: Location ID
+    required: false
+    type: string 
+  locationCode:
+    description: Location Code
+    required: false
+    type: string 
+  isRechargeable:
+    description: Is Rechargeable
+    required: false
+    type: boolean 
+  isExpendable:
+    description: Is Expendable
+    required: false
+    type: boolean 
+  isTransferable:
+    description: Is Transferable
+    required: false
+    type: boolean 
+  reasonCode:
+    description: Reason Code
+    required: false
+    type: string 
+  type:
+    description: Gift Card Type, Default value is "Purchased"
+    required: false
+    type: string
+    enum: [Purchased, Non-purchased, Identity]
+    default: "Purchased"
+  pin:
+    description: PIN Code for a Gift card.
+    required: false
+    type: string 
+  validUntilTime:
+    description: Gift card expires timestamp (UNIX time, in mSec). Local time. null if no expiration.
+    required: false
+    type: number 
+  timezoneOffset:
+    description: Local timezone offset from UTC in seconds. UTC (zero offset) is assumed is omitted
+    required: false
+    type: number 
+  isRefundable:
+    description: Is Refundable
+    required: false
+    type: boolean 
+  emailInfo:
+    description: Information for sending email
+    required: true
+    type: object
+    properties:
+      senderName:
+        description: Name of Sender
+        required: true
+        type: string
+      recipientName:
+        description: Name of Recipient
+        required: true
+        type: string
+      recipientEmail:
+        description: Email of Recipient
+        required: true
+        type: string
+      giftCardAmount:
+        description: Gift Card Amount
+        required: true
+        type: string
+      message:
+        description: Email Message
+        required: true
+        type: string
+      UUID:
+        description: SFCC field to be returned along gift card creation status.
+        required: true
+        type: string

@@ -1,0 +1,82 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  giftcardID:
+    description: ID for a Gift Card to create.
+    required: false
+    type: string
+  balance:
+    description: Current balance
+    required: false
+    type: string
+  customerID:
+    description: Customer ID
+    required: false
+    type: string 
+  contactID:
+    description: Contact ID
+    required: false
+    type: string	
+  locationID:
+    description: Location ID
+    required: false
+    type: string
+  isRechargeable:
+    description: Is Rechargeable
+    required: false
+    type: boolean 
+  isExpendable:
+    description: Indicates if gift card is expendable (only one payment can be made)
+    required: false
+    type: boolean 
+  isTransferable:
+    description: Indicates if gift card supports balance transfer to another card
+    required: false
+    type: boolean
+  isDeactivated:
+    description: Indicates if card has been deactivated
+    required: false
+    type: boolean
+  isExpired:
+    description: Is Expired
+    required: false
+    type: boolean
+  isSpent:
+    description: Is Spent
+    required: false
+    type: boolean
+  type:
+    description: Gift Card Type, Default value is "Purchased"
+    required: false
+    type: string
+    enum: [Purchased, Non-purchased, Identity]
+    default: "Purchased"
+  reasonCode:
+    description: Reason Code
+    required: false
+    type: string 
+  validUntilTime:
+    description: Gift card expires timestamp (UNIX time, in mSec). Local time. null if no expiration.
+    required: false
+    type: number 
+  canPay:
+    description: Can be used for payment or not
+    required: false
+    type: boolean
+  canRecharge:
+    description: Can be recharged or not
+    required: false
+    type: boolean
+  creationTime:
+    description: Gift Card creation timestamp
+    required: false
+    type: number 
+  modificationTime:
+    description: Gift Card last modification timestamp
+    required: false
+    type: number 
+  isRefundable:
+    description: Is Refundable
+    required: false
+    type: boolean 

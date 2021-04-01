@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:order-process-api="http://www.mulesoft.org/schema/mule/order-process-api" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/order-process-api http://www.mulesoft.org/schema/mule/order-process-api/current/mule-order-process-api.xsd">
+	<http:request-config name="customer.proc_configuration" doc:name="HTTP Request configuration" doc:id="9cb75806-c24d-4b47-ba20-9d03c26fb89b" >
+		<http:request-connection host="${customer.proc.host}" />
+	</http:request-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="355af1f4-339b-4237-81d2-228e34627538" file="service-exp.${env.name}.yaml" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="3a570ebd-f8d6-4466-99d8-acf466d47dc8" file="service-exp.${env.name}.yaml" key="${token}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+	<api-gateway:autodiscovery apiId="${secure::api.apiKey}" doc:name="API Autodiscovery" doc:id="0b7672d4-cc96-4c8e-bba6-7207b02673d0" flowRef="service-exp-main" />
+	<configuration doc:name="Configuration" doc:id="3fab4764-bde8-4dc0-bee9-4dced943522b" defaultErrorHandler-ref="globalError_Handler" />
+	<order-process-api:config name="Order_Process_API_Config" doc:name="Order Process API Config" doc:id="47e215df-e34e-440b-b415-06a8dd441d66" property_host="${order.proc.host}" property_port="${order.proc.port}" property_basePath="/api/"/>
+</mule>

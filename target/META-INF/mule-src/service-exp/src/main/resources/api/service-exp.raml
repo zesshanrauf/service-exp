@@ -1,0 +1,288 @@
+#%RAML 1.0
+title: Service Experience API
+version: v1.0.0
+protocols: [ HTTP ]
+baseUri: http://order-proc.us-e1.cloudhub.io/api/
+mediaType: application/json
+
+traits:
+  client-id-required:
+    headers:
+      client_id:
+        type: string
+      client_secret:
+        type: string
+# uses: 
+#  lib: /dependencies/997d5e99-287f-4f68-bc95-ed435d7c5797/catalyst-library/1.0.60/catalyst-library.raml
+
+types:
+  orderHistory: !include schemas/orderHistory.raml
+  product: !include schemas/productSchema.raml
+  customerCreateUpdate: !include schemas/createCustomerSchema.raml
+  getCustomerSchema: !include schemas/getCustomerRequestSchema.raml
+  createGiftCardRequestType: !include schemas/giftcard/create-giftcard-requestType.raml
+  createGiftCardResponseType: !include schemas/giftcard/create-giftcard-responseType.raml
+  discardTransactionGiftCardRequestType: !include schemas/giftcard/discardTransaction-giftcard-requestType.raml
+  authorizeTransactionGiftCardRequestType: !include schemas/giftcard/authorizeTransaction-giftcard-requestType.raml  
+  emailTypes:
+    type: string
+    enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard ]
+
+/customers:
+  is: [client-id-required]
+  post:
+    body:
+      application/json:
+        type: customerCreateUpdate
+        examples:
+          input: !include examples/createCustomerRequest.json
+    responses:
+      201:
+        body:
+          application/json:
+            examples:
+              output: 
+                message: request received.
+  get:
+    queryParameters: 
+      email:
+        description: Email to get Customer record.
+        type: string
+        pattern: ^.+@.+\..+$
+        required: true
+    responses: 
+      200:
+        body: 
+          application/json:
+            example: !include examples/getCustomerResponse.json
+  /{id}:
+    is: [client-id-required]
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: !include examples/getCustomerResponse.json
+  /checkbyemail:
+    is: [client-id-required]
+    get:
+      queryParameters: 
+        email:
+          description: Email to check customer existence.
+          type: string
+          pattern: ^.+@.+\..+$
+          required: true
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/checkByEmailResponse.json
+/orders:
+  /history:
+    is: [client-id-required]
+    get:
+      queryParameters: 
+        Source:
+          type: string
+        CustomerId:
+          type: string
+          required: false
+        CustomerEmail:
+          type: string
+          required: false
+        SalesOrderNo:
+          type: string
+          required: false
+        ExternalId:
+          type: string
+          required: false
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: !include examples/orderResponse.json
+  /historydetails:
+    description: Order History Details
+    is: [client-id-required]
+    get:
+      queryParameters: 
+        Source:
+          type: string
+          required: true
+        RecModified:
+          type: string
+          required: false
+        DeviceTransactionNumber:
+          type: string
+          required: false
+        SalesOrderNo:
+          type: string
+          required: false
+        SalesOrderId:
+          type: string
+          required: false
+        CustomerEmail:
+          type: string
+          required: false
+        CustomerId:
+          type: string
+          required: false
+        ExternalId:
+          type: string
+          required: false
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: !include examples/orderHistoryDetailsResponse.json
+/product:
+  is: [client-id-required]
+  post:
+    body:
+      application/json:
+        type: product
+        examples:
+          input: !include examples/productRequest.json
+    responses:
+      201:
+        body:
+          application/json:
+            examples:
+              message: product added.
+  patch:
+    body:
+      application/json:
+        type: product
+        examples:
+          input: !include examples/productRequest.json
+    responses:
+      200:
+        body:
+          application/json:
+            examples:
+              output: !include examples/productRequest.json
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            examples:
+              output: !include examples/productRequest.json
+/giftcards:
+  is: [client-id-required]
+  description: Gift Cards     
+  get:    
+    description: Retrieves a giftcard with specified ID from SVS.
+    queryParameters:
+      giftCardId:
+        type: string
+        required: true
+      pin:
+        type: string
+        required: false
+      timeZoneOffset:
+        type: number
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            examples:
+              output: !include /examples/giftcard/giftcard.json
+      400:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+      500:
+        body:
+          application/json:
+            example: !include examples/badrequest.json
+  post:
+    description: Creates new Gift card in SVS.
+    body:
+        application/json:
+          type: array
+          items: createGiftCardRequestType
+          examples:
+            input: !include examples/giftcard/create-giftcard-request.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: array
+            items: createGiftCardResponseType
+            examples:
+              output: !include examples/giftcard/create-giftcard-response.json
+      400:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+      500:
+        body:
+          application/json:
+            example: !include examples/badrequest.json
+  /authorizetransaction:
+    is: [client-id-required]
+    post:
+      description: Perform first step of Gift card transaction (either payment or recharge)
+      body:
+          application/json:
+            type: authorizeTransactionGiftCardRequestType
+            examples:
+              input: !include examples/giftcard/authorizeTransaction-giftcard-request.json
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: !include examples/giftcard/authorizeTransaction-giftcard-response.json
+        400:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+        500:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+  /discardtransaction:
+    is: [client-id-required]
+    post:
+      description: Discard previously authorized Gift card transaction.
+      body:
+          application/json:
+            type: discardTransactionGiftCardRequestType
+            examples:
+              input: !include examples/giftcard/discardtransaction-giftcard-request.json
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: !include examples/giftcard/giftcard.json
+        400:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+        500:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+/emails:
+  /{emailType}:
+    uriParameters:
+      emailType:
+        type: emailTypes
+    is: [client-id-required]
+    post:
+      body:
+        application/json:
+          type : object
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: message received.

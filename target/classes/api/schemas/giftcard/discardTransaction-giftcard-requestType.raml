@@ -1,0 +1,44 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  authorizationKey:
+    description: Authorization Key
+    required: true
+    type: string
+  referenceNum:
+    description: Reference Number
+    required: true	
+    type: string 
+  description:
+    description: Description
+    required: false
+    type: string   
+  timezoneOffset:
+    description: Local timezone offset from UTC in seconds. UTC (zero offset) is assumed is omitted
+    required: false
+    type: number 
+  customData1:
+    description: Additional Information
+    required: false
+    type: string
+  customData2:
+    description: Additional Information
+    required: false
+    type: string
+  customData3:
+    description: Additional Information
+    required: false
+    type: string
+  customData4:
+    description: Additional Information
+    required: false
+    type: string
+  customData5:
+    description: Additional Information
+    required: false
+    type: string
+  webOrderNumber:
+    description: Web Order Number
+    required: false
+    type: string

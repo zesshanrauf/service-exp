@@ -1,0 +1,50 @@
+[
+  {
+    "giftcardID": "1234-5678-9123-6789",
+    "customerID": "4D8CCDA5-FA13-4678-81CD-8C874377CD09",
+    "contactID": "E699A2E6-460D-11E7-8B14-0021CCBDFD42",
+    "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    "locationCode": "S056POSA",
+    "isRechargeable": true,
+    "isExpendable": false,
+    "isTransferable": true,
+    "reasonCode": "Promotion",
+    "type": "Non-purchased",
+    "pin": "1234",
+    "validUntilTime": 1402487812000,
+    "timezoneOffset": 7200,
+    "isRefundable": false,
+    "emailInfo": {
+      "senderName": "John",
+      "recipientName": "Mitchell Starc",
+      "recipientEmail": "mitchell.starc@gmail.com",
+      "giftCardAmount": "50.00",
+      "message": "Some other customer's message",
+      "UUID": "9badf38d03473ec6e19e49f7dr"
+    }
+  },
+  {
+    "giftcardID": "1234-5678-9123-6789",
+    "customerID": "4D8CCDA5-FA13-4678-81CD-8C874377CD09",
+    "contactID": "E699A2E6-460D-11E7-8B14-0021CCBDFD42",
+    "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    "locationCode": "S056POSA",
+    "isRechargeable": true,
+    "isExpendable": false,
+    "isTransferable": true,
+    "reasonCode": "Promotion",
+    "type": "Non-purchased",
+    "pin": "1234",
+    "validUntilTime": 1402487812000,
+    "timezoneOffset": 7200,
+    "isRefundable": false,
+    "emailInfo": {
+      "senderName": "John",
+      "recipientName": "Mitchell Starc",
+      "recipientEmail": "mitchell.starc@gmail.com",
+      "giftCardAmount": "50.00",
+      "message": "Some other customer's message",
+      "UUID": "9badf38d03473ec6e19e49f7dr"
+    }
+  }
+]

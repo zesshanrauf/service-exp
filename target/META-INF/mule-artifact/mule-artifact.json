@@ -1,0 +1,62 @@
+{
+  "configs": [
+    "service-exp-implementation.xml",
+    "service-exp-common.xml",
+    "exception.xml",
+    "service-exp.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:service-exp:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.2.2",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "api/examples/badrequest.json",
+        "api/examples/checkByEmailResponse.json",
+        "api/examples/createCustomerRequest.json",
+        "api/examples/getCustomerResponse.json",
+        "api/examples/giftcard/authorizeTransaction-giftcard-request.json",
+        "api/examples/giftcard/authorizeTransaction-giftcard-response.json",
+        "api/examples/giftcard/create-giftcard-request.json",
+        "api/examples/giftcard/create-giftcard-response.json",
+        "api/examples/giftcard/discardtransaction-giftcard-request.json",
+        "api/examples/giftcard/giftcard.json",
+        "api/examples/orderHistoryDetailsResponse.json",
+        "api/examples/orderHistoryExample.json",
+        "api/examples/orderResponse.json",
+        "api/examples/productRequest.json",
+        "api/schemas/createCustomerSchema.raml",
+        "api/schemas/customerAddressSchema.raml",
+        "api/schemas/customerContactsSchema.raml",
+        "api/schemas/customerRequestEntriesSchema.raml",
+        "api/schemas/getCustomerRequestSchema.raml",
+        "api/schemas/giftcard/authorizeTransaction-giftcard-requestType.raml",
+        "api/schemas/giftcard/create-giftcard-requestType.raml",
+        "api/schemas/giftcard/create-giftcard-responseType.raml",
+        "api/schemas/giftcard/discardTransaction-giftcard-requestType.raml",
+        "api/schemas/historyFiltersItems.raml",
+        "api/schemas/historySHortDescriptions.raml",
+        "api/schemas/orderHistory.raml",
+        "api/schemas/productSchema.raml",
+        "api/service-exp.raml",
+        "exception.xml",
+        "log4j2.xml",
+        "service-exp-common.xml",
+        "service-exp-implementation.xml",
+        "service-exp.dev.yaml",
+        "service-exp.local.yaml",
+        "service-exp.prod.yaml",
+        "service-exp.qa.yaml",
+        "service-exp.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

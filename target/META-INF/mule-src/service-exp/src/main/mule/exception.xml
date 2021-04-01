@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:module-ol-logging-ext="http://www.mulesoft.org/schema/mule/module-ol-logging-ext" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+    xmlns="http://www.mulesoft.org/schema/mule/core"
+    xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/module-ol-logging-ext http://www.mulesoft.org/schema/mule/module-ol-logging-ext/current/mule-module-ol-logging-ext.xsd">
+    <sub-flow name="error-log" doc:id="9d88fbb1-4cbc-43ad-b79d-5a5b8b1acea5" >
+        <set-variable value="#[output application/java --- 
+if (error.detailedDescription != null and error.detailedDescription != '') (error.detailedDescription) else error.description default &quot;&quot;]" doc:name="errorMessage" doc:id="36fc7152-8da8-4b98-a8e4-739bff53c7ba" variableName="errorMessage"/>
+		<set-variable value="#[%dw 2.0
+output application/java
+---
+if(sizeOf(vars.errDetails default &quot;&quot;) &gt; 0) (vars.errDetails as String)
+else if (error.detailedDescription != null and error.detailedDescription != '') (error.detailedDescription as String)
+else (&quot;&quot;)]" doc:name="technicalDetails" doc:id="b73fde9d-1f05-4519-8534-4fcb82e0c335" variableName="technicalDetails"/>
+        <ee:transform doc:name="Setup the error message response" doc:id="7d16e7b4-20e1-4726-a1f5-1237aa3c5dd9" >
+            <ee:message >
+                <ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	errorCode: vars.httpStatus as Number,
+	errorMessage: vars.errorMessage,
+	technicalDetails: vars.technicalDetails
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+		<logger level="ERROR" doc:name="Logger" doc:id="23b12283-2321-4d7e-83cd-f2354db31e57" message="[#[vars.appName]:0021] Flow Name: #[flow.name] Error occured in process GUID #[vars.tid]  Payload:  #['\n']#[payload]"/>
+    </sub-flow>
+	<error-handler name="globalError_Handler" doc:id="c48f7814-9867-4f51-928c-34747762cef2" >
+        <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="aa42f841-e3ac-454e-a04b-ccde11f52a3f" type="APIKIT:NOT_FOUND,HTTP:CONNECTIVITY,HTTP:NOT_FOUND">
+            <set-variable value='Resource not found' doc:name="errMsg" doc:id="bfb52897-f853-4938-8fbe-34ad2b151964" variableName="errMsg" />
+			<set-variable value="404" doc:name="httpStatus" doc:id="293c3e2f-e6bf-47fe-a862-a78a2eefc8a9" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="5c700458-5550-45f7-a701-b24f99e65f80" name="error-log"/> 
+        </on-error-propagate>
+        <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="56a48461-209e-4f70-9ec3-b9cdb0112279" type="APIKIT:METHOD_NOT_ALLOWED">
+			<set-variable value="Method not allowed" doc:name="errMsg" doc:id="1a6000bb-58d4-43ec-adb4-debf2543e0c0" variableName="errMsg" />
+			<set-variable value="405" doc:name="httpStatus" doc:id="38781f07-8cb7-4d7d-893d-200f93759edb" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="6dfc7f07-dd16-4286-9655-a0d357a441c9" name="error-log" />
+        </on-error-propagate>
+        <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="4ed44de4-5b59-44a0-a291-c833fde96730" type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+            <set-variable value="Unsupported media type" doc:name="errMsg" doc:id="e3cb7726-edde-4c02-b6d4-815011f57507" variableName="errMsg" />
+            <set-variable value="415" doc:name="httpStatus" doc:id="961a1825-2b1f-4ae4-aaad-9528d00be296" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="465e7266-17f3-4993-af86-d71bd2abeb97" name="error-log"/>
+        </on-error-propagate>
+        <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="afaaeff0-4477-4297-a409-f1f8e2e3c18f" type="APIKIT:NOT_ACCEPTABLE">
+            <set-variable value="Not acceptable" doc:name="errMsg" doc:id="addb028d-41c5-4ce0-99c9-c544630b6c0c" variableName="errMsg" />
+            <set-variable value="406" doc:name="httpStatus" doc:id="3061172f-856f-4946-8179-9cc3a436e50c" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="8b02b58a-2fcc-458e-b139-d0a80b07dfe6" name="error-log"/>
+        </on-error-propagate>
+        <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="a28e2c70-3b74-4fa0-86be-1753017f377a" type="APIKIT:BAD_REQUEST">
+            <set-variable value="Bad request" doc:name="errMsg" doc:id="868508be-d4d6-4d34-86d0-635477cb9478" variableName="errMsg" />
+            <set-variable value="400" doc:name="httpStatus" doc:id="daec0654-93fe-471e-8560-104475274d69" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="d485f39a-a734-40d7-b8cb-b790f6716945" name="error-log" />
+        </on-error-propagate>
+        <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="57917828-71c3-46e0-a9a1-237a38e14ab1" type="APIKIT:NOT_IMPLEMENTED" >
+            <set-variable value="not implemented exception" doc:name="errMsg" doc:id="ee472377-948c-40db-868d-46423634770d" variableName="errMsg" />
+			<set-variable value="400" doc:name="httpStatus" doc:id="92223567-b676-4c6c-96ee-a98bc1b331dc" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="8df228f3-d40d-4e5d-8d09-e63e1ccbc88f" name="error-log"/>
+        </on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="3b0d96ac-aca9-48fb-b5f8-f48b726c675e" type="ANY">
+			<choice doc:name="Choice" doc:id="b21010a0-94d1-4ec1-923a-cb6561b991be">
+				<when expression="#[error.muleMessage.attributes.StatusCode != null]">
+					<set-variable value='#[if((typeOf(error.muleMessage.payload) as String) == "Object") (error.muleMessage.payload.errorMessage default "Internal Server Error Object")
+else if((typeOf(error.muleMessage.payload) as String) == "String") (error.muleMessage.payload default "Internal Server Error String")
+else ("Internal Server Error")]' doc:name="errMsg" doc:id="b59fd47f-5113-474b-857e-01ac8b21ab80" variableName="errMsg" />
+					<set-variable value='#[if((typeOf(error.muleMessage.payload) as String) == "Object") (
+	if(!isEmpty(error.muleMessage.typedValue))(
+		error.muleMessage.typedValue.^raw as String default ""
+	)else(
+	error.muleMessage.payload.technicalDetails default "Internal Server Error - Object")
+) else if((typeOf(error.muleMessage.payload) as String) == "String") (
+	error.muleMessage.payload default "Internal Server Error - String"
+) else (
+	"Internal Server Error"
+)]' doc:name="errDetails" doc:id="52996dee-ecc2-48d9-a668-e09ba51edafc" variableName="errDetails" />
+					<set-variable value="#[error.muleMessage.attributes.StatusCode default 500]" doc:name="httpStatus" doc:id="eea94cdf-368a-4d2d-9643-1bf5f0b021d9" variableName="httpStatus" />
+					<flow-ref doc:name="error-log" doc:id="2a1fef0d-99d7-4bb7-ad81-1027a735d5a0" name="error-log" />
+				</when>
+				<otherwise>
+					<set-variable value="Internal Server Error" doc:name="errMsg" doc:id="6d64a6f4-04de-40af-91a9-4238abecd813" variableName="errMsg" />
+					<set-variable value="404" doc:name="httpStatus" doc:id="274658c5-8d34-4c3c-840c-e7cad6a4d34c" variableName="httpStatus" />
+					<flow-ref doc:name="error-log" doc:id="75985523-f6a7-42fa-8e88-00f515b9e907" name="error-log" />
+				</otherwise>
+			</choice>
+		</on-error-propagate>
+</error-handler>
+<error-handler name="globalError_Handler_Continue" doc:id="f5bea13b-8a4f-41ab-a399-93f4fb27d2d6" >
+        <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="f6cc2f1e-96e6-4f2e-a867-51b5ec8ea887" type="APIKIT:NOT_FOUND,HTTP:CONNECTIVITY,HTTP:NOT_FOUND">
+            <set-variable value='Resource not found' doc:name="errMsg" doc:id="2f3d8cd9-ccba-4f3b-bc3a-c93ccc644d08" variableName="errMsg" />
+			<set-variable value="404" doc:name="httpStatus" doc:id="8338a889-ac8a-417b-9363-d03d42d19930" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="335f248e-2abd-4da7-9818-fe9cbafb9240" name="error-log"/> 
+        </on-error-continue>
+        <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="952aab07-acb3-4dc8-bc10-0a491158ef3a" type="APIKIT:METHOD_NOT_ALLOWED">
+			<set-variable value="Method not allowed" doc:name="errMsg" doc:id="2ed785fe-fe69-494d-9e65-68c7abf2bb8c" variableName="errMsg" />
+			<set-variable value="405" doc:name="httpStatus" doc:id="e03cd8c2-8c28-4152-9d80-077b21fcb099" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="e8cafd12-3f84-45ee-9b55-73a6d5ba0c2b" name="error-log" />
+        </on-error-continue>
+        <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="fd60a219-167c-4ed5-9a17-544008cb0fce" type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+            <set-variable value="Unsupported media type" doc:name="errMsg" doc:id="78ea9277-daba-4db3-8c62-8f277cdbecd5" variableName="errMsg" />
+            <set-variable value="415" doc:name="httpStatus" doc:id="de6739f8-6f55-4d1c-9e77-09079ce7c95e" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="95b7ef7e-90a5-4614-90cf-a661bc03c043" name="error-log"/>
+        </on-error-continue>
+        <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="dd78160e-8d52-490c-bd74-0f6177d877e4" type="APIKIT:NOT_ACCEPTABLE">
+            <set-variable value="Not acceptable" doc:name="errMsg" doc:id="ee661fec-6e1b-4e31-86eb-ec85cda3e095" variableName="errMsg" />
+            <set-variable value="406" doc:name="httpStatus" doc:id="5f09bc84-f98d-4863-944e-21f038952260" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="5a5ee2c5-517b-4f68-9c4a-fad0e394e5bd" name="error-log"/>
+        </on-error-continue>
+        <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="686cd31b-c201-42d3-9446-827cfde03662" type="APIKIT:BAD_REQUEST">
+            <set-variable value="Bad request" doc:name="errMsg" doc:id="5382293a-4a15-4dcb-9285-21865478cdb5" variableName="errMsg" />
+            <set-variable value="400" doc:name="httpStatus" doc:id="0d56ca7e-75a7-431b-823f-336490556292" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="cab27d03-34d8-423d-a20f-54f35e2d9779" name="error-log" />
+        </on-error-continue>
+        <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="c10a279b-5faa-4fe9-88e7-fcd8a0c00416" type="APIKIT:NOT_IMPLEMENTED" >
+            <set-variable value="not implemented exception" doc:name="errMsg" doc:id="a89ae6d7-3bc5-475b-abc6-0407a192d98c" variableName="errMsg" />
+			<set-variable value="400" doc:name="httpStatus" doc:id="b454f38f-9717-4883-afd7-785f31606775" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="7f45b855-46da-431a-85f2-67423db5c81b" name="error-log"/>
+        </on-error-continue>
+        <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="06080913-f471-42a3-b356-8118f492dcc2" type="ANY:CONFLICT" >
+            <set-variable value="Conflict" doc:name="errMsg" doc:id="0d4e30a8-81a5-4dc4-8daf-090f7b3690b8" variableName="errMsg" />
+			<set-variable value="409" doc:name="httpStatus" doc:id="b2196481-1be0-4402-a9e7-eb676d1be8de" variableName="httpStatus" />
+			<flow-ref doc:name="error-log" doc:id="dc1891e4-85c5-412d-b402-fa687c9922c8" name="error-log"/>
+        </on-error-continue>
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="3784eafa-4dae-4129-b4b2-b7a835c03f3c" type="ANY">
+			<choice doc:name="Choice" doc:id="df598a9f-5c3a-4f9e-9688-6d5db18b8aba">
+				<when expression="#[error.muleMessage.attributes.statusCode != null]">
+					<set-variable value='#[if((typeOf(error.muleMessage.payload) as String) == "Object") (error.muleMessage.payload.errorMessage default "Internal Server Error Object")
+else if((typeOf(error.muleMessage.payload) as String) == "String") (error.muleMessage.payload default "Internal Server Error String")
+else ("Internal Server Error")]' doc:name="errMsg" doc:id="07f41ced-6587-4a46-b88a-1bbeda4d8dbe" variableName="errMsg" />
+					<set-variable value='#[if((typeOf(error.muleMessage.payload) as String) == "Object") (
+	error.muleMessage.payload.technicalDetails default "Internal Server Error - Object"
+) else if((typeOf(error.muleMessage.payload) as String) == "String") (
+	error.muleMessage.payload default "Internal Server Error - String"
+) else (
+	"Internal Server Error"
+)]' doc:name="errDetails" doc:id="15b9ac3c-f250-4d62-b99e-e97d6fc0faef" variableName="errDetails" />
+					<set-variable value="#[error.muleMessage.attributes.statusCode default 500]" doc:name="httpStatus" doc:id="f7ada537-6f73-403b-aa90-49802940d294" variableName="httpStatus" />
+					<flow-ref doc:name="error-log" doc:id="c3814fcb-8e70-4689-9716-e87570b610a9" name="error-log" />
+				</when>
+				<otherwise>
+					<set-variable value="Internal Server Error" doc:name="errMsg" doc:id="8b8cfc4e-4f3c-4569-af7d-94616a8ec584" variableName="errMsg" />
+					<set-variable value="505" doc:name="httpStatus" doc:id="be237ba1-072e-4e95-bb41-e7498fef9e5d" variableName="httpStatus" />
+					<flow-ref doc:name="error-log" doc:id="28eb2117-1637-4312-9808-c56c41bca8fa" name="error-log" />
+				</otherwise>
+			</choice>
+		</on-error-continue>
+</error-handler>
+</mule>

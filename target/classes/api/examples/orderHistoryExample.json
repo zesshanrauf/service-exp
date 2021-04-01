@@ -1,0 +1,38 @@
+{
+  "Source": "integrator",
+  "Data": {
+    "ApiDocumentId": "6c5ad3bc-e8b7-4f73-8fa6-c5e5cf1c5e9f",
+    "Request": {
+      "Filters": [
+        {
+          "Field": "CustomerId",
+          "Operator": "Equal",
+          "Value": "0B52553A-7D2A-4A39-B8BE-3164112AC543"
+        },
+        {
+          "Field": "CustomerEmail",
+          "Operator": "Equal",
+          "Value": "mail@gmail.com"
+        },
+        {
+          "Field": "SalesOrderNo",
+          "Operator": "Equal",
+          "Value": "234"
+        },
+        {
+          "Field": "ExternalId",
+          "Operator": "Equal",
+          "Value": "PO234"
+        }
+      ],
+      "SortDescriptions": [
+        {
+          "Name": "RecModified",
+          "Direction": "Ascending"
+        }
+      ],
+      "Top": 10,
+      "Skip": 0
+    }
+  }
+}

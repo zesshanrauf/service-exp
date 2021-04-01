@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:customer-process-api="http://www.mulesoft.org/schema/mule/customer-process-api"
+	xmlns:order-process-api="http://www.mulesoft.org/schema/mule/order-process-api"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/order-process-api http://www.mulesoft.org/schema/mule/order-process-api/current/mule-order-process-api.xsd
+http://www.mulesoft.org/schema/mule/customer-process-api http://www.mulesoft.org/schema/mule/customer-process-api/current/mule-customer-process-api.xsd">
+	<http:request-config name="order-proc-http-request-configuration" doc:name="HTTP Request configuration" doc:id="a58a6a45-cf69-4dbf-ab2d-cfac03d61a1e" >
+		<http:request-connection host="${order.proc.host}" />
+	</http:request-config>
+	
+	<customer-process-api:config name="Customer_Process_API_Config" doc:name="Customer Process API Config" doc:id="3d51c845-2e60-4c20-82eb-ebcdc905da62" property_host="${customer.proc.host}" property_port="${customer.proc.port}" property_protocol="${customer.proc.protocol}" property_basePath="${customer.proc.basePath}" />
+	<sub-flow name="sendRequestTo_Customer-proc" doc:id="f21f7ca3-5e6d-4053-869a-7b2e06b78d2c" >
+		<ee:transform doc:name="Transform Message" doc:id="375a728b-c30c-45d8-b105-f4096d843cdd">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="26d99caa-98e1-480c-8f7a-d16275e8b632" message="#['[']#[vars.appName]:0001#[']'] Going to send create-update Request to customer-proc API. #[payload]"/>
+		<http:request method="POST" doc:name="Request" doc:id="6cced4e4-29b7-433d-8377-9c8eb5abb2fa" config-ref="customer.proc_configuration" path="${customer.proc.basePathCustomers}">
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	"client_secret" : p('secure::customer.proc.client_secret'),
+	"client_id" : p('secure::customer.proc.client_id')
+}]]]></http:headers>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="62cc3657-d8be-47f1-9879-5b4a5ec91948" message="#['[']#[vars.appName]:0002#[']'] Response received form customer-proc API for create-update customer. #[payload]"/>
+	</sub-flow>
+	<sub-flow name="getCustomerBy_CustomerId" doc:id="9b4716c9-e113-44d1-95af-4274d94f9ba5" >
+		<logger level="INFO" doc:name="Logger" doc:id="10a51534-3227-4577-b5ee-3df6c6987192" message="#['[']#[vars.appName]:0003#[']'] Going to send GET customerby ID request to customer-proc API. #[payload]"/>
+		<http:request method="GET" doc:name="getCustomerRequest_Customer-proc" doc:id="87e62bd5-d2ab-481b-9f4d-09bbc4545e47" config-ref="customer.proc_configuration" path="${customer.proc.basePathGetCustomers}" >
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	"client_secret" : p('secure::customer.proc.client_secret'),
+	"client_id" : p('secure::customer.proc.client_id')
+}]]]></http:headers>
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	"id" : attributes.uriParams.'id'
+}]]]></http:uri-params>
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"id" : attributes.uriParams.'id'
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="022f52e1-6c25-4fe5-8de7-14922a1ff9a7" message="#['[']#[vars.appName]:0004#[']'] Response received form customer-proc API for get customer by ID. #[payload]" />
+	</sub-flow>
+	<sub-flow name="getCustomerByEmail" doc:id="b596f24e-ded3-4224-b6d5-650bf1c6922d" >
+		<logger level="INFO" doc:name="Logger" doc:id="6d7f2eaa-3eb2-405c-8ccf-37bba07758c6" message="#['[']#[vars.appName]:0005#[']'] Request received to get customer by Email going to send it to comer-proc. #[attributes.queryParams.email]"/>
+		<http:request method="GET" doc:name="Request" doc:id="56ac11be-033c-4f16-bda7-64f97dc6dcdd" path="${customer.proc.basePathCheckByEmail}" config-ref="customer.proc_configuration">
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	"client_secret" : p('secure::customer.proc.client_secret'),
+	"client_id" : p('secure::customer.proc.client_id')
+}]]]></http:headers>
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"email" : attributes.queryParams.email
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="eba8da98-589a-4ee7-b74b-40dfe2a191b8" message="#['[']#[vars.appName]:0006#[']'] Response received from comer-proc to against get customer by Email. #[payload]"/>
+	</sub-flow>
+	<sub-flow name="getCustomerRecordByEmail" doc:id="42aa197a-145f-4f1b-8952-94943b0e8930" >
+		<logger level="INFO" doc:name="Logger" doc:id="8ddc7c42-ccba-4f58-9dc5-190d94099bd0" message="#['[']#[vars.appName]:0005#[']'] Request received to get customer record by Email going to send it to comer-proc. #[attributes.queryParams.email]"/>
+		<http:request method="GET" doc:name="Request" doc:id="78b3b1ed-b482-4790-a8cc-61ad5a310130" config-ref="customer.proc_configuration" path="${customer.proc.basePathCustomers}">
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	"client_secret" : p('secure::customer.proc.client_secret'),
+	"client_id" : p('secure::customer.proc.client_id')
+}]]]></http:headers>
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"email" : attributes.queryParams.email
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="1b8a73de-8dc1-4424-90b8-fd823e826baf" message="#['[']#[vars.appName]:0006#[']'] Response received from comer-proc to against get customer record by Email. #[payload]"/>
+	</sub-flow>
+	<sub-flow name="get-OrderHistory-flow" doc:id="7f484089-aa52-46c9-9607-40fc4fddc27d" >
+		<logger level="INFO" doc:name="Logger" doc:id="e08dfc46-d7e9-4baf-8415-07992faccbc0" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Request received to get order history, going to send it to order-proc.  Following are the queryParams #['[']Source: #[attributes.queryParams.Source], CustomerId: #[attributes.queryParams.CustomerId], CustomerEmail: #[attributes.queryParams.CustomerEmail], SalesOrderNo: #[attributes.queryParams.SalesOrderNo], ExternalId: #[attributes.queryParams.ExternalId]#[']']"/>
+		<order-process-api:get-histories doc:name="get-order-history" doc:id="8eb15856-8c2d-48f6-b278-e9d1e0ac352e" config-ref="Order_Process_API_Config" source="#[attributes.queryParams.Source]" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}" customer-id="#[if (attributes.queryParams.CustomerId != null) (attributes.queryParams.CustomerId) else null]" customer-email="#[if (attributes.queryParams.CustomerEmail != null) (attributes.queryParams.CustomerEmail) else null]" sales-order-no="#[if (attributes.queryParams.SalesOrderNo != null) (attributes.queryParams.SalesOrderNo) else null]" external-id="#[if (attributes.queryParams.ExternalId != null) (attributes.queryParams.ExternalId) else null]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="bdb27dc4-bd66-44b1-8a54-a698c81d598f" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from order-proc to against get order history, seding it back to calling API. #[payload]"/>
+	</sub-flow>
+	<sub-flow name="giftcards-create-subFlow" doc:id="9e745d5b-82ea-49d5-abdc-78ac3b6de88f" >
+		<logger level="INFO" doc:name="Logg Flow Start" doc:id="feb633eb-9ff9-4cae-a440-5d21e44b1f32" message="#['[']#[vars.appName]:0001#[']'] Start calling create method of Order-Proc API. #[payload]" />
+		<order-process-api:create-giftcard doc:name="Create giftcard" doc:id="fa734708-f04a-48d0-9459-ec03b2edf3ba" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}"/>
+		<logger level="INFO" doc:name="Logg Flow End" doc:id="dc95ef31-1ee9-4a26-9c05-aab16da2e76a" message="#['[']#[vars.appName]:0002#[']'] End calling create method of Order-Proc API. #[payload]" />
+	</sub-flow>
+	<sub-flow name="giftcards-authorizeTransaction-subFlow" doc:id="4cd341ae-676e-4430-ac30-6462fded3e56" >
+		<logger level="INFO" doc:name="Logg Flow Start" doc:id="9fca9b1f-da82-416f-b8d1-9fbb17d87404" message="#['[']#[vars.appName]:0001#[']'] Start calling authorizetransaction method of Order-Proc API. #[payload]" />
+		<order-process-api:create-authorizetransaction doc:name="Create authorizetransaction" doc:id="5d0eb165-b22f-4be6-8b4d-feec1661c5ef" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}"/>
+		<logger level="INFO" doc:name="Logg Flow End" doc:id="69976c91-6783-4f60-95a8-15b94b4a82ed" message="#['[']#[vars.appName]:0002#[']'] End calling authorizetransaction method of Order-Proc API. #[payload]" />
+	</sub-flow>
+	<sub-flow name="giftcards-discardTransaction-subFlow" doc:id="5ce23926-dbbe-41d7-8dce-60f8adb2cbce" >
+		<logger level="INFO" doc:name="Logg Flow Start" doc:id="8b484b4d-11b6-4945-bdea-59531a94d0c0" message="#['[']#[vars.appName]:0001#[']'] Start calling discardtransaction method of Order-Proc API. #[payload]" />
+		<order-process-api:create-discardtransaction doc:name="Create discardtransaction" doc:id="f2394263-0373-413f-9db6-9c5bb01e5cd2" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}"/>
+		<logger level="INFO" doc:name="Logg Flow End" doc:id="2a1e681d-685a-4d89-9c08-784258c63ccc" message="#['[']#[vars.appName]:0002#[']'] End calling discardtransaction method of Order-Proc API. #[payload]" />
+	</sub-flow>
+	<sub-flow name="giftcards-get-subFlow" doc:id="666b2502-1883-4f49-a1ae-ebcfb33bf4a3" >
+		<logger level="INFO" doc:name="Logg Flow Start" doc:id="ed7c5ca4-477b-4d7e-91a9-2537c7b80491" message="#['[']#[vars.appName]:0001#[']'] Start calling Get method of Order-Proc API. #[payload]"/>
+		<order-process-api:get-giftcards doc:name="Get giftcards" doc:id="988cc05e-f81f-4800-b38d-1723409c751f" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}" gift-card-id='#[attributes.queryParams.giftCardId]' pin="#[attributes.queryParams.pin]" time-zone-offset="#[attributes.queryParams.timeZoneOffset]"/>
+		<logger level="INFO" doc:name="Logg Flow End" doc:id="d471c4b1-02ce-46dc-9ff6-f32ab4a7f9f3" message="#['[']#[vars.appName]:0002#[']'] End calling Get method of Order-Proc API. #[payload]"/>
+	</sub-flow>
+	<sub-flow name="get-orderHistoryDetails-subFlow" doc:id="b39ad0c3-a337-4606-ae96-f3cb47582228" >
+		<logger level="INFO" doc:name="Logger" doc:id="061e5a7e-41cd-4ad6-905a-c384558e11e3" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Request recieved to get Order history details, going to send request to order-proc API. Following are the queryParams #['[']Source: #[attributes.queryParams.Source], RecModified: #[attributes.queryParams.RecModified], DeviceTransactionNumber: #[attributes.queryParams.DeviceTransactionNumber], SalesOrderNo: #[attributes.queryParams.SalesOrderNo], SalesOrderId: #[attributes.queryParams.SalesOrderId], CustomerEmail: #[attributes.queryParams.CustomerEmail], CustomerId: #[attributes.queryParams.CustomerId], ExternalId: #[attributes.queryParams.ExternalId]#[']']"/>
+		<order-process-api:get-historydetails doc:name="get-order-history-details" doc:id="e453d242-1a59-41db-8576-5baca3f6c331" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}" source="#[attributes.queryParams.Source]" customer-id="#[if (attributes.queryParams.CustomerId != null) (attributes.queryParams.CustomerId) else null]" rec-modified="#[if (attributes.queryParams.RecModified != null) (attributes.queryParams.RecModified) else null]" device-transaction-number="#[if (attributes.queryParams.DeviceTransactionNumber != null) (attributes.queryParams.DeviceTransactionNumber) else null]" sales-order-no="#[if (attributes.queryParams.SalesOrderNo != null) (attributes.queryParams.SalesOrderNo) else null]" sales-order-id="#[if (attributes.queryParams.SalesOrderId != null) (attributes.queryParams.SalesOrderId) else null]" customer-email="#[if (attributes.queryParams.CustomerEmail != null) (attributes.queryParams.CustomerEmail) else null]" external-id="#[if (attributes.queryParams.ExternalId != null) (attributes.queryParams.ExternalId) else null]" />
+		<logger level="INFO" doc:name="Logger" doc:id="48ea1931-e81c-4b7d-889c-c69837ea6118" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response recieved from order-proc API against order-history-details, going to send it to calling API. #[payload]"/>
+	</sub-flow>
+	<sub-flow name="send-email-request-to-customerProc" doc:id="3a88e86a-d2da-4fef-98a6-d43fbfdce448" >
+		<logger level="INFO" doc:name="Logger" doc:id="c952cf07-3611-4a28-abd1-a58b7c285624" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Request recieved to trigger email at #[attributes.uriParams.'emailType'] endpoint going to send it to Customer Proc API."/>
+		<customer-process-api:create-email-by-email-type doc:name="Create email by email type" doc:id="00801ba3-0e8b-4945-b64f-4abd953577bf" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}" config-ref="Customer_Process_API_Config" email-type="#[attributes.uriParams.'emailType']"/>
+		<logger level="INFO" doc:name="Logger" doc:id="bdb02802-4814-49cd-94cf-2955585c21a6" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from Customer Proc API going to send back to calling API. #[payload]"/>
+	</sub-flow>
+</mule>

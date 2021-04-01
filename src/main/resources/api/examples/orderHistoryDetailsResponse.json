@@ -1,0 +1,384 @@
+{
+  "ApiDocument": {
+    "ApiDocumentId": "92132833-D9C3-4E30-A5C9-E59E590D4B39",
+    "Status": "Successful",
+    "ApiRequestType": "sales-order-export",
+    "TotalRecords": 1,
+    "RecordsCount": 1,
+    "ElapsedTime": "00:00:01.6900000",
+    "Response": {
+      "SalesOrders": [
+        {
+          "SalesOrderNo": "1000000415",
+          "RecModified": "2020-02-11T08:43:26.773",
+          "SalesOrderId": "8DE0FD42-2C52-4AF4-8DE5-006E1A135E35",
+          "DeviceTransactionNumber": 1000000415,
+          "Type": "SendSale",
+          "SalesOrderDateTime": "2020-02-11T10:36:05",
+          "PriceLevelIdentifier": "Sell Price",
+          "Status": 65535,
+          "StatusName": "Mixed",
+          "IsArchive": false,
+          "SellFromLocation": "VIKA",
+          "DefaultFillLocation": "ELEVKOVICH",
+          "SaleCreditLocation": "VIKA",
+          "LockFillLocation": true,
+          "TotalAmountWithoutTax": 203,
+          "TotalAmountWithTax": 203,
+          "TotalTaxAmount": 0,
+          "TotalDiscountAmount": 0,
+          "MembershipCode": "096800037794",
+          "FraudStatus": "Unknown",
+          "BlockEmailNotifications": false,
+          "SellInfo": {
+            "Customer": "1200000201",
+            "LastName": "Harkusha",
+            "FirstName": "Viktoria",
+            "MiddleName": "",
+            "Address1": "255 GREENWICH ST",
+            "Address2": "FL 9",
+            "City": "New York",
+            "State": "NY",
+            "PostalCode": "10007",
+            "Phone1": "+380 96 129 5866",
+            "Phone2": "",
+            "Phone3": "",
+            "Organization": "ertsert",
+            "Gender": 2,
+            "Birthdate": "1998-08-11T00:00:00",
+            "WholesaleCustomer": false,
+            "TradingPartner": false,
+            "Phone4": "",
+            "CountryCode": "US",
+            "Email": "vharkusha@teamworkretail.com",
+            "Address3": "",
+            "Address4": "",
+            "Address5": "",
+            "FiscalCode": "",
+            "DepositBalance": 3,
+            "TotalDepositAmount": 0,
+            "CreateDateTime": "2020-02-11T10:36:05",
+            "EditDateTime": "2020-02-11T10:41:55"
+          },
+          "BillInfo": {
+            "WholesaleCustomer": false,
+            "TradingPartner": false
+          },
+          "ShipInfo": {
+            "Customer": "1200000201",
+            "LastName": "Harkusha",
+            "FirstName": "Viktoria",
+            "MiddleName": "",
+            "Address1": "255 GREENWICH ST",
+            "Address2": "FL 9",
+            "City": "New York",
+            "State": "NY",
+            "PostalCode": "10007",
+            "Organization": "ertsert",
+            "Phone1": "+380 96 129 5866",
+            "WholesaleCustomer": false,
+            "TradingPartner": false,
+            "CountryCode": "US",
+            "Email": "vharkusha@teamworkretail.com",
+            "Type": "primary",
+            "Address3": "",
+            "Address4": "",
+            "IsManualEntry": false,
+            "IsStorePickup": false,
+            "AVSPerformed": false,
+            "Address5": "",
+            "FiscalCode": ""
+          },
+          "CustomFlag1": false,
+          "CustomFlag2": false,
+          "CustomFlag3": false,
+          "CustomFlag4": false,
+          "CustomFlag5": false,
+          "CustomFlag6": false,
+          "CustomFlag7": false,
+          "CustomFlag8": false,
+          "Items": [
+            {
+              "LineNo": 1,
+              "ItemIdentifier": "251",
+              "ItemDetails": {
+                "PLU": 251,
+                "StyleNo": "79",
+                "ItemDescription": "vika_VGC",
+                "DCSS": {
+                  "DCSSCode": "NEW"
+                }
+              },
+              "Status": "Completed",
+              "DeliveryMethod": "Ship",
+              "FillLocation": "VIKA",
+              "LockFillLocation": true,
+              "ShippingMethod": "UPS",
+              "PromiseDate": "2020-02-11T10:36:05",
+              "GifteeEmail": "sahg@hjds.com",
+              "GiftCardNo": "7O,SUDYQNXPY3Q,PJ,ZC",
+              "VirtualGiftCardAmount": 100,
+              "GiftItem": false,
+              "OrderQty": 1,
+              "QtyDue": 0,
+              "QtyCancelled": 0,
+              "UnitPrice": 100,
+              "PriceLevelIdentifier": "Sell Price",
+              "ExtPrice": 100,
+              "ExtDiscountAmount": 0,
+              "ExtAmountWithoutTax": 100,
+              "ExtAmountWithTax": 100,
+              "ExtTaxAmount": 0,
+              "ItemFeeAmountWithoutTax": 0,
+              "ItemFeeAmountWithTax": 0,
+              "ItemFeeTaxAmount": 0,
+              "RmaCode": "19XTF23Z",
+              "FinalSale": false,
+              "MemberDiscountPercent": 0,
+              "MemberDiscountAmount": 0,
+              "MembershipItem": false,
+              "MemberDiscountAllowed": false,
+              "MembershipDays": 0,
+              "ShipInfo": {
+                "WholesaleCustomer": false,
+                "TradingPartner": false,
+                "IsManualEntry": false,
+                "IsStorePickup": false,
+                "AVSPerformed": false
+              },
+              "CustomFlag1": false,
+              "CustomFlag2": false,
+              "CustomFlag3": false,
+              "CustomFlag4": false,
+              "CustomFlag5": false,
+              "CustomFlag6": false,
+              "CustomFlag7": false,
+              "CustomFlag8": false
+            },
+            {
+              "LineNo": 2,
+              "ItemIdentifier": "251",
+              "ItemDetails": {
+                "PLU": 251,
+                "StyleNo": "79",
+                "ItemDescription": "vika_VGC",
+                "DCSS": {
+                  "DCSSCode": "NEW"
+                }
+              },
+              "Status": "Completed",
+              "DeliveryMethod": "Ship",
+              "FillLocation": "VIKA",
+              "LockFillLocation": true,
+              "ShippingMethod": "UPS",
+              "PromiseDate": "2020-02-11T10:36:05",
+              "GifteeEmail": "sahg@hjds.com",
+              "GiftCardNo": "NVWIF7FRQ5IPJPIDS0AIQGIQWXU18VJ9FH,SJXX14AVZRYVQXDU3DDTG2FTEA3,2X",
+              "VirtualGiftCardAmount": 100,
+              "GiftItem": false,
+              "OrderQty": 1,
+              "QtyDue": 0,
+              "QtyCancelled": 0,
+              "UnitPrice": 100,
+              "PriceLevelIdentifier": "Sell Price",
+              "ExtPrice": 100,
+              "ExtDiscountAmount": 0,
+              "ExtAmountWithoutTax": 100,
+              "ExtAmountWithTax": 100,
+              "ExtTaxAmount": 0,
+              "ItemFeeAmountWithoutTax": 0,
+              "ItemFeeAmountWithTax": 0,
+              "ItemFeeTaxAmount": 0,
+              "RmaCode": "19XTF23Y",
+              "FinalSale": false,
+              "MemberDiscountPercent": 0,
+              "MemberDiscountAmount": 0,
+              "MembershipItem": false,
+              "MemberDiscountAllowed": false,
+              "MembershipDays": 0,
+              "ShipInfo": {
+                "WholesaleCustomer": false,
+                "TradingPartner": false,
+                "IsManualEntry": false,
+                "IsStorePickup": false,
+                "AVSPerformed": false
+              },
+              "CustomFlag1": false,
+              "CustomFlag2": false,
+              "CustomFlag3": false,
+              "CustomFlag4": false,
+              "CustomFlag5": false,
+              "CustomFlag6": false,
+              "CustomFlag7": false,
+              "CustomFlag8": false
+            },
+            {
+              "LineNo": 3,
+              "ItemIdentifier": "105",
+              "ItemDetails": {
+                "PLU": 105,
+                "UPC": "9780201382051",
+                "StyleNo": "27",
+                "ItemDescription": "vika_sing",
+                "Attribute1": "M",
+                "Attribute2": "Blue",
+                "DCSS": {
+                  "DCSSCode": "NEW"
+                }
+              },
+              "Status": "Shipping",
+              "DeliveryMethod": "Ship",
+              "FillLocation": "VIKA",
+              "LockFillLocation": true,
+              "ShippingMethod": "UPS",
+              "PromiseDate": "2020-02-11T10:36:05",
+              "VirtualGiftCardAmount": 0,
+              "GiftItem": false,
+              "OrderQty": 1,
+              "QtyDue": 1,
+              "QtyCancelled": 0,
+              "UnitPrice": 3,
+              "PriceLevelIdentifier": "Sell Price",
+              "ExtPrice": 3,
+              "ExtDiscountAmount": 0,
+              "ExtAmountWithoutTax": 3,
+              "ExtAmountWithTax": 3,
+              "ExtTaxAmount": 0,
+              "ItemFeeAmountWithoutTax": 0,
+              "ItemFeeAmountWithTax": 0,
+              "ItemFeeTaxAmount": 0,
+              "RmaCode": "19XTF23X",
+              "FinalSale": false,
+              "MemberDiscountPercent": 0,
+              "MemberDiscountAmount": 0,
+              "MembershipItem": false,
+              "MemberDiscountAllowed": false,
+              "MembershipDays": 0,
+              "ShipInfo": {
+                "WholesaleCustomer": false,
+                "TradingPartner": false,
+                "IsManualEntry": false,
+                "IsStorePickup": false,
+                "AVSPerformed": false
+              },
+              "CustomFlag1": false,
+              "CustomFlag2": false,
+              "CustomFlag3": false,
+              "CustomFlag4": false,
+              "CustomFlag5": false,
+              "CustomFlag6": false,
+              "CustomFlag7": false,
+              "CustomFlag8": false
+            }
+          ],
+          "Payments": [
+            {
+              "ReceiptIdentifier": "460",
+              "ListOrder": 0,
+              "AccountType": "CreditCard",
+              "PaymentMethodCode": "ADYEN",
+              "PaymentMethodDescription": "Adyen",
+              "PaymentCardType": "CreditCard",
+              "AccountNumber": "XXXX-XXXX-XXXX-1111",
+              "PaymentAmount": 200,
+              "ChangeAmount": 0
+            },
+            {
+              "ReceiptIdentifier": "462",
+              "ListOrder": 0,
+              "AccountType": "CreditCard",
+              "PaymentMethodCode": "ADYEN",
+              "PaymentMethodDescription": "Adyen",
+              "PaymentCardType": "CreditCard",
+              "AccountNumber": "XXXX-XXXX-XXXX-1111",
+              "PaymentAmount": 3,
+              "ChangeAmount": 0
+            }
+          ],
+          "ShipMemos": [
+            {
+              "ShipMemoNo": "211",
+              "CreatedDate": "2020-02-11T08:38:52.727",
+              "CreatedByEmployee": "ROOT",
+              "FillLocation": "VIKA",
+              "Status": "Shipped",
+              "DefaultShippingMethod": "UPS",
+              "Items": [
+                {
+                  "LineNo": 1,
+                  "ItemIdentifier": "251",
+                  "Status": "Shipped",
+                  "RejectedQty": 0,
+                  "Cartons": [
+                    {
+                      "Qty": 1,
+                      "Status": "Shipping",
+                      "ShippedDate": "2020-02-11T10:37:21.040",
+                      "ShippedByEmployee": "ROOT",
+                      "CartonNo": "1",
+                      "DeliveryMethodType": 0
+                    }
+                  ]
+                },
+                {
+                  "LineNo": 2,
+                  "ItemIdentifier": "251",
+                  "Status": "Shipped",
+                  "RejectedQty": 0,
+                  "Cartons": [
+                    {
+                      "Qty": 1,
+                      "Status": "Shipping",
+                      "ShippedDate": "2020-02-11T10:37:21.040",
+                      "ShippedByEmployee": "ROOT",
+                      "CartonNo": "1",
+                      "DeliveryMethodType": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "ShipMemoNo": "1000000415",
+              "CreatedDate": "2020-02-11T08:41:53.643",
+              "CreatedByEmployee": "ROOT",
+              "FillLocation": "VIKA",
+              "Status": "Shipped",
+              "DefaultShippingMethod": "UPS",
+              "Items": [
+                {
+                  "LineNo": 1,
+                  "ItemIdentifier": "105",
+                  "Status": "PrepareShipment",
+                  "RejectedQty": 0,
+                  "Cartons": [
+                    {
+                      "TrackingId": "jk",
+                      "Qty": 0,
+                      "Status": "New",
+                      "ShippingMethod": "UPS",
+                      "ShippedDate": "2020-02-12T13:31:41.923",
+                      "ShippedByEmployee": "ROOT",
+                      "CartonNo": "1",
+                      "ActualShippingCost": 0,
+                      "DeliveryMethodType": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Instructions": [
+            {
+              "SendSaleInstruction": {
+                "ShippingMethodCode": "UPS",
+                "ShipPartial": true
+              }
+            }
+          ],
+          "ShipOnce": false
+        }
+      ]
+    }
+  }
+}
