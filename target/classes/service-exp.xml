@@ -186,9 +186,6 @@ output application/json
     <flow name="post:\giftcards\authorizetransaction:application\json:service-exp-config">
         <flow-ref doc:name="Call giftcards-authorizeTransaction-subFlow" doc:id="e68915f7-e67f-4b31-931e-206eb7bf1608" name="giftcards-authorizeTransaction-subFlow" />
     </flow>
-    <flow name="post:\giftcards\discardtransaction:application\json:service-exp-config">
-        <flow-ref doc:name="Call giftcards-discardTransaction-subFlow" doc:id="aca9f9e0-60ba-4766-885f-7a7dca4a6b47" name="giftcards-discardTransaction-subFlow" />
-    </flow>
     <flow name="post:\giftcards:application\json:service-exp-config">
         <flow-ref doc:name="Call giftcards-create-subFlow" doc:id="ca3fc750-4177-4e91-9110-4d87e2f8feb5" name="giftcards-create-subFlow" />
     </flow>
@@ -199,6 +196,6 @@ output application/json
         <flow-ref doc:name="getCustomerRecordByEmail" doc:id="724510fa-f576-4db7-9bc2-c161dbf608a5" name="getCustomerRecordByEmail" />
     </flow>
     <flow name="post:\emails\(emailType):application\json:service-exp-config">
-        <flow-ref doc:name="send-email-request-to-customerProc" doc:id="b9335c5d-bedf-4274-be40-b566eeffef49" name="send-email-request-to-customerProc"/>
+        <flow-ref doc:name="send-email-request-to-customerProc" doc:id="b9335c5d-bedf-4274-be40-b566eeffef49" name="send-email-request-to-customerProc" />
     </flow>
 </mule>

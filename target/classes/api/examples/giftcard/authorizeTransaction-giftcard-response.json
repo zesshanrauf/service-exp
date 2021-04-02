@@ -1,27 +1,38 @@
-{
-  "authorizationKey": "ag5kZXZ-Y2xvdWR3a3N2c3IrCxIIR2lmd",
-  "card": 
-    {
-    "canPay": false,
-    "isTransferable": true,
-    "isDeactivated": false,
-    "isExpendable": false,
+[
+  {
     "giftcardID": "1234-5678-9123-6789",
-    "validUntilTime": 1402531199000,
-    "creationTime": 1614753806956,
-    "canRecharge": false,
-    "modificationTime": 1614753806956,
-    "locationName": null,
-    "isRechargeable": true,
-    "contactID": "E699A2E6-460D-11E7-8B14-0021CCBDFD42",
+    "amount": "-150.25",
     "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
-    "isRefundable": false,
-    "isSpent": false,
-    "reasonCode": "Promotion",
-    "isExpired": true,
-    "balance": "0.00",
-    "type": "Non-purchased",
-    "customerID": "06E9CEF7-BBEF-4866-9B16-806BB9198789",
-    "locationCode": null
+    "locationCode": "S056POSA",
+    "pin": "1234",
+    "isReturn": false,
+    "isRefund": false,
+    "referenceNum": "TX534646546",
+    "description": "Some text",
+    "timezoneOffset": 7200,
+    "customData1": "Store_ABCD",
+    "customData2": "Store_ABCD",
+    "customData3": "Store_ABCD",
+    "customData4": "Store_ABCD",
+    "customData5": "Store_ABCD",
+    "webOrderNumber": "web-order-no"
+  },
+  {
+    "giftcardID": "1234-5678-9123-6789",
+    "amount": "-150.25",
+    "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    "locationCode": "S056POSA",
+    "pin": "1234",
+    "isReturn": false,
+    "isRefund": false,
+    "referenceNum": "TX534646546",
+    "description": "Some text",
+    "timezoneOffset": 7200,
+    "customData1": "Store_ABCD",
+    "customData2": "Store_ABCD",
+    "customData3": "Store_ABCD",
+    "customData4": "Store_ABCD",
+    "customData5": "Store_ABCD",
+    "webOrderNumber": "web-order-no"
   }
-}
+]

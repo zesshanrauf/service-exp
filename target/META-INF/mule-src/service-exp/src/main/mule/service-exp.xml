@@ -199,6 +199,6 @@ output application/json
         <flow-ref doc:name="getCustomerRecordByEmail" doc:id="724510fa-f576-4db7-9bc2-c161dbf608a5" name="getCustomerRecordByEmail" />
     </flow>
     <flow name="post:\emails\(emailType):application\json:service-exp-config">
-        <flow-ref doc:name="send-email-request-to-customerProc" doc:id="b9335c5d-bedf-4274-be40-b566eeffef49" name="send-email-request-to-customerProc"/>
+        <flow-ref doc:name="send-email-request-to-customerProc" doc:id="b9335c5d-bedf-4274-be40-b566eeffef49" name="send-email-request-to-customerProc" />
     </flow>
 </mule>

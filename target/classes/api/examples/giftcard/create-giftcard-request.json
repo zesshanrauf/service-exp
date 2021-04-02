@@ -11,7 +11,7 @@
     "reasonCode": "Promotion",
     "type": "Non-purchased",
     "pin": "1234",
-    "validUntilTime": 1402487812000,
+    "validUntilTime": 9902487812000,
     "timezoneOffset": 7200,
     "isRefundable": false,
     "emailInfo": {
@@ -35,7 +35,7 @@
     "reasonCode": "Promotion",
     "type": "Non-purchased",
     "pin": "1234",
-    "validUntilTime": 1402487812000,
+    "validUntilTime": 9902487812000,
     "timezoneOffset": 7200,
     "isRefundable": false,
     "emailInfo": {
