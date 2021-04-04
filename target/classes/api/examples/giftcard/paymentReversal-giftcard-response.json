@@ -1,0 +1,38 @@
+[
+  {
+    "giftcardID": "1234-5678-9123-6789",
+    "amount": "-150.25",
+    "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    "locationCode": "S056POSA",
+    "pin": "1234",
+    "isReturn": false,
+    "isRefund": false,
+    "referenceNum": "TX534646546",
+    "description": "Some text",
+    "timezoneOffset": 7200,
+    "customData1": "Store_ABCD",
+    "customData2": "Store_ABCD",
+    "customData3": "Store_ABCD",
+    "customData4": "Store_ABCD",
+    "customData5": "Store_ABCD",
+    "webOrderNumber": "web-order-no"
+  },
+  {
+    "giftcardID": "1234-5678-9123-6789",
+    "amount": "-150.25",
+    "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    "locationCode": "S056POSA",
+    "pin": "1234",
+    "isReturn": false,
+    "isRefund": false,
+    "referenceNum": "TX534646546",
+    "description": "Some text",
+    "timezoneOffset": 7200,
+    "customData1": "Store_ABCD",
+    "customData2": "Store_ABCD",
+    "customData3": "Store_ABCD",
+    "customData4": "Store_ABCD",
+    "customData5": "Store_ABCD",
+    "webOrderNumber": "web-order-no"
+  }
+]

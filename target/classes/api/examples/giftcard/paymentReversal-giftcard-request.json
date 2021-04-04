@@ -1,0 +1,26 @@
+[
+  {
+    "giftcardID": "1111-2222-3333-4444",
+    "amount": "-36.24",
+    "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    "locationCode": "S056POSA",
+    "pin": "1234",
+    "isReturn": false,
+    "isRefund": false,
+    "timezoneOffset": 7200,
+    "webOrderNumber": "00000001",
+    "uuid": "10b47f40cca039998059502838"
+  },
+  {
+    "giftcardID": "1111-2222-3333-4444",
+    "amount": "-100",
+    "locationID": "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    "locationCode": "S056POSA",
+    "pin": "4444",
+    "isReturn": false,
+    "isRefund": false,
+    "timezoneOffset": 7200,
+    "webOrderNumber": "00000001",
+    "uuid": "85b47f40cca039998059502838"
+  }
+]

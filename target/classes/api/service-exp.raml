@@ -21,6 +21,7 @@ types:
   createGiftCardRequestType: !include schemas/giftcard/create-giftcard-requestType.raml
   createGiftCardResponseType: !include schemas/giftcard/create-giftcard-responseType.raml
   authorizeTransactionGiftCardRequestType: !include schemas/giftcard/authorizeTransaction-giftcard-requestType.raml  
+  paymentReversalRequestType: !include schemas/giftcard/paymentReversal-giftcard-requestType.raml
   emailTypes:
     type: string
     enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard ]
@@ -237,6 +238,30 @@ types:
             application/json:
               examples:
                 output: !include examples/giftcard/authorizeTransaction-giftcard-response.json
+        400:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+        500:
+          body:
+            application/json:
+              example: !include examples/badrequest.json
+  /paymentreversal:
+    is: [client-id-required]
+    post:
+      description: Payment Reversal
+      body:
+          application/json:
+            type: array
+            items: paymentReversalRequestType
+            examples:
+              input: !include examples/giftcard/paymentReversal-giftcard-request.json
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: !include examples/giftcard/paymentReversal-giftcard-response.json
         400:
           body:
             application/json:

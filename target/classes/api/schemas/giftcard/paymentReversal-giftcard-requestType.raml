@@ -1,0 +1,44 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  giftcardID:
+    description: ID for a Gift Card to create.
+    required: true
+    type: string
+  amount:
+    description: Amount
+    required: true
+    type: string
+  locationID:
+    description: Location ID
+    required: false
+    type: string 
+  locationCode:
+    description: Location Code
+    required: false
+    type: string 
+  pin:
+    description: PIN Code for a Gift card.
+    required: false
+    type: string 
+  isReturn:
+    description: Is Return
+    required: false
+    type: boolean 
+  isRefund:
+    description: Is Refund
+    required: false
+    type: boolean 
+  timezoneOffset:
+    description: Timezone offset
+    required: false
+    type: number
+  webOrderNumber:
+    description: Web Order Number
+    required: false
+    type: string 
+  uuid:
+    description: UUID
+    required: false
+    type: string
