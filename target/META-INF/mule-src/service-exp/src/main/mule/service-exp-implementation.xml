@@ -103,10 +103,10 @@ payload]]></ee:set-payload>
 		<order-process-api:create-authorizetransaction doc:name="Create authorizetransaction" doc:id="5d0eb165-b22f-4be6-8b4d-feec1661c5ef" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}"/>
 		<logger level="INFO" doc:name="Logg Flow End" doc:id="69976c91-6783-4f60-95a8-15b94b4a82ed" message="#['[']#[vars.appName]:0002#[']'] End calling authorizetransaction method of Order-Proc API. #[payload]" />
 	</sub-flow>
-	<sub-flow name="giftcards-discardTransaction-subFlow" doc:id="5ce23926-dbbe-41d7-8dce-60f8adb2cbce" >
-		<logger level="INFO" doc:name="Logg Flow Start" doc:id="8b484b4d-11b6-4945-bdea-59531a94d0c0" message="#['[']#[vars.appName]:0001#[']'] Start calling discardtransaction method of Order-Proc API. #[payload]" />
-		<order-process-api:create-discardtransaction doc:name="Create discardtransaction" doc:id="f2394263-0373-413f-9db6-9c5bb01e5cd2" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}"/>
-		<logger level="INFO" doc:name="Logg Flow End" doc:id="2a1e681d-685a-4d89-9c08-784258c63ccc" message="#['[']#[vars.appName]:0002#[']'] End calling discardtransaction method of Order-Proc API. #[payload]" />
+	<sub-flow name="giftcards-paymentReversal-subFlow" doc:id="70505bb4-7e2d-4abb-9653-291c88eaa4d7" >
+		<logger level="INFO" doc:name="Logg Flow Start" doc:id="3c147a37-7dcc-48af-be4d-f9846fd8ab78" message="#['[']#[vars.appName]:0001#[']'] Start calling paymentreversal method of Order-Proc API. #[payload]" />
+		<order-process-api:create-paymentreversal doc:name="Create paymentreversal" doc:id="a63d1084-d203-4dec-8912-402e2e9bfaba" config-ref="Order_Process_API_Config" client-id="${secure::order.proc.client_id}" client-secret="${secure::order.proc.client_secret}"/>
+		<logger level="INFO" doc:name="Logg Flow End" doc:id="93893a2b-ae1e-4aaa-afc8-fcb8f1c34979" message="#['[']#[vars.appName]:0002#[']'] End calling paymentreversal method of Order-Proc API. #[payload]" />
 	</sub-flow>
 	<sub-flow name="giftcards-get-subFlow" doc:id="666b2502-1883-4f49-a1ae-ebcfb33bf4a3" >
 		<logger level="INFO" doc:name="Logg Flow Start" doc:id="ed7c5ca4-477b-4d7e-91a9-2537c7b80491" message="#['[']#[vars.appName]:0001#[']'] Start calling Get method of Order-Proc API. #[payload]"/>

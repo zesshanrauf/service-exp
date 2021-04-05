@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="MULE_LIB/a2403be9-9b13-4371-bb0c-471264adc637/mule-plugin-order-proc/1.0.5"/>
 	<classpathentry kind="con" path="MULE_LIB/a2403be9-9b13-4371-bb0c-471264adc637/mule-plugin-customer-proc/1.0.3"/>
-	<classpathentry kind="con" path="MULE_LIB/a2403be9-9b13-4371-bb0c-471264adc637/mule-plugin-order-proc/1.0.4"/>
 	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-sockets-connector/1.1.5"/>
 	<classpathentry kind="con" path="MULE_LIB/org.mule.modules/mule-apikit-module/1.4.1"/>
 	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-http-connector/1.5.23"/>
