@@ -198,4 +198,51 @@ output application/json
     <flow name="post:\emails\(emailType):application\json:service-exp-config">
         <flow-ref doc:name="send-email-request-to-customerProc" doc:id="b9335c5d-bedf-4274-be40-b566eeffef49" name="send-email-request-to-customerProc" />
     </flow>
+    <flow name="post:\giftcards\paymentreversal:application\json:service-exp-config">
+        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    giftcardID: "1234-5678-9123-6789",
+    amount: "-150.25",
+    locationID: "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    locationCode: "S056POSA",
+    pin: "1234",
+    isReturn: false,
+    isRefund: false,
+    referenceNum: "TX534646546",
+    description: "Some text",
+    timezoneOffset: 7200,
+    customData1: "Store_ABCD",
+    customData2: "Store_ABCD",
+    customData3: "Store_ABCD",
+    customData4: "Store_ABCD",
+    customData5: "Store_ABCD",
+    webOrderNumber: "web-order-no"
+  }, 
+  {
+    giftcardID: "1234-5678-9123-6789",
+    amount: "-150.25",
+    locationID: "00D3E47D-E8C8-4B17-AE3B-37B1D462F64E",
+    locationCode: "S056POSA",
+    pin: "1234",
+    isReturn: false,
+    isRefund: false,
+    referenceNum: "TX534646546",
+    description: "Some text",
+    timezoneOffset: 7200,
+    customData1: "Store_ABCD",
+    customData2: "Store_ABCD",
+    customData3: "Store_ABCD",
+    customData4: "Store_ABCD",
+    customData5: "Store_ABCD",
+    webOrderNumber: "web-order-no"
+  }
+]]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
 </mule>
