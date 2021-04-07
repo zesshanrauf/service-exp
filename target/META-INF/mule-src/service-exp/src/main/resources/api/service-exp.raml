@@ -24,7 +24,7 @@ types:
   paymentReversalRequestType: !include schemas/giftcard/paymentReversal-giftcard-requestType.raml
   emailTypes:
     type: string
-    enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard ]
+    enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard, passwordchanged, newslettersignup ]
 
 /customers:
   is: [client-id-required]
