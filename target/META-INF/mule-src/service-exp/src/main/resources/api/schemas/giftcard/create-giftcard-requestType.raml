@@ -13,7 +13,7 @@ properties:
   contactID:
     description: Contact ID
     required: false
-    type: string	
+    type: string  
   locationID:
     description: Location ID
     required: false
@@ -59,14 +59,34 @@ properties:
   isRefundable:
     description: Is Refundable
     required: false
-    type: boolean 
+    type: boolean
   emailInfo:
     description: Information for sending email
     required: true
     type: object
     properties:
-      senderName:
-        description: Name of Sender
+      subscriberKey:
+        description: Subscriber Key
+        required: true
+        type: string
+      emailAddress:
+        description: Email Address
+        required: true
+        type: string
+      name:
+        description: Name
+        required: true
+        type: string
+      giftCardAmount:
+        description: Gift Card Amount
+        required: true
+        type: string
+      balance:
+        description: Balance
+        required: true
+        type: string
+      description:
+        description: Description
         required: true
         type: string
       recipientName:
@@ -77,12 +97,24 @@ properties:
         description: Email of Recipient
         required: true
         type: string
-      giftCardAmount:
-        description: Gift Card Amount
+      senderName:
+        description: Name of Sender
         required: true
         type: string
       message:
         description: Email Message
+        required: true
+        type: string
+      maskedGiftCertificateCode:
+        description: Masked Gift Certificate Code
+        required: true
+        type: string
+      merchantID:
+        description: Merchant ID
+        required: true
+        type: string
+      orderNo:
+        description: Merchant ID
         required: true
         type: string
       UUID:
