@@ -25,7 +25,7 @@ types:
   v2CreateCustomer: !include schemas/V2CustomerSchema.raml
   emailTypes:
     type: string
-    enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard, passwordchanged, newslettersignup ]
+    enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard, passwordchanged, newslettersignup, legacyCustomerPasswordReset ]
 
 /v2/customers:
   post:
