@@ -201,4 +201,16 @@ output application/json
     <flow name="post:\giftcards\paymentreversal:application\json:service-exp-config">
         <flow-ref doc:name="giftcards-paymentReversal-subFlow" doc:id="1ddc3026-a11b-42d4-97c0-4144307cbc52" name="giftcards-paymentReversal-subFlow" />
     </flow>
+    <flow name="post:\v2\customers:application\json:service-exp-config">
+        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  message: "request received."
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
 </mule>

@@ -123,4 +123,110 @@ payload]]></ee:set-payload>
 		<customer-process-api:create-email-by-email-type doc:name="Create email by email type" doc:id="00801ba3-0e8b-4945-b64f-4abd953577bf" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}" config-ref="Customer_Process_API_Config" email-type="#[attributes.uriParams.'emailType']"/>
 		<logger level="INFO" doc:name="Logger" doc:id="bdb02802-4814-49cd-94cf-2955585c21a6" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from Customer Proc API going to send back to calling API. #[payload]"/>
 	</sub-flow>
+	<sub-flow name="v2-customer-implementation-subFlow" doc:id="dcfd608c-5d0e-44a0-93d2-3b6d236dc301" >
+		<logger level="INFO" doc:name="Start Flow" doc:id="0a4443c4-f729-4968-b7ef-db3e1fb28cab" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] request received from webhook going to convert it to json #[payload]"/>
+		<ee:transform doc:name="input/json payload" doc:id="98d01e43-2fce-4533-b067-7d8299999010">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="transform for customer proc" doc:id="b4da24d7-52ce-4727-ac4b-1392d23b0156" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] going to transform request for customer-proc  #[payload]"/>
+		<ee:transform doc:name="into customer-proc request" doc:id="761a57c9-a88e-458b-bd7b-9e08043dc630" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json skipNullOn="everywhere"
+---
+{
+	entries: [{
+		customerID: payload.customer.customerID,
+		isInactive: payload.customer.isInactive,
+		memberCode: payload.customer.memberCode,
+		magentoID: payload.customer.magentoID,
+		email1: {
+			email: payload.customer.email1.email,
+			acceptMarketing: payload.customer.email1.acceptMarketing,
+			acceptTransactional: payload.customer.email1.acceptTransactional
+		},
+		email2: {
+			email: payload.customer.email2.email,
+			acceptMarketing: payload.customer.email2.acceptMarketing,
+			acceptTransactional: payload.customer.email2.acceptTransactional
+		},
+		phone1: {
+			number: payload.customer.phone1.number
+		},
+		phone2:{
+        number: payload.customer.phone2.number
+        },
+		phone3:{
+        number: payload.customer.phone3.number
+        },
+		phone4:{
+        number: payload.customer.phone4.number
+        },
+		title: payload.customer.title,
+		firstName: payload.customer.firstName,
+		middleName: payload.customer.middleName ,
+		lastName : payload.customer.lastName,
+		suffix: payload.customer.suffix ,
+		birthYear: payload.customer.birthYear,
+		
+		addresses: payload.customer.addresses map ( address , indexOfAddress ) -> {
+			addressID: address.addressID,
+			"type": address."type",
+			countryCode: address.countryCode,
+			state: address.state,
+			address1: address.address1,
+			address2: address.address2,
+			address3: address.address3,
+			address4: address.address4,
+			address5: address.address5,
+			fiscalCode: address.fiscalCode,
+			city: address.city,
+			postalCode: address.postalCode ,
+			organization: address.organization,
+			title: address.title,
+			firstName: address.firstName,
+			middleName: address.middleName,
+			lastName: address.lastName,
+			suffix: address.suffix,
+			phone: address.phone,
+			fax: address.fax,
+			email: address.email,
+			VATRegistrationNumber: address.VATRegistrationNumber
+		},
+		customGuid1: payload.customer.customGuid1 ,
+		customGuid2: payload.customer.customGuid2 ,
+		customGuid3: payload.customer.customGuid3 ,
+		customGuid5: payload.customer.customGuid5 ,
+		customGuid6: payload.customer.customGuid6 ,
+		customGuid8: payload.customer.customGuid8 ,
+		customGuid9: payload.customer.customGuid9,
+		customNumber1: payload.customer.customNumber1,
+		customNumber2: payload.customer.customNumber2,
+		customNumber4: payload.customer.customNumber4,
+		customNumber5: payload.customer.customNumber5,
+		customNumber6: payload.customer.customNumber6,
+		customDecimal1: payload.customer.customDecimal1,
+		customDecimal2: payload.customer.customDecimal2,
+		customDecimal4: payload.customer.customDecimal4,
+		customDecimal5: payload.customer.customDecimal5,
+		customDecimal6: payload.customer.customDecimal6,
+		customFlag1: payload.customer.customFlag1,
+		customFlag2: payload.customer.customFlag2,
+		customFlag3: payload.customer.customFlag3,
+		customFlag4: payload.customer.customFlag4,
+		customFlag5: payload.customer.customFlag5,
+		customFlag6: payload.customer.customFlag6
+	}]
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="sending to customer-proc" doc:id="4280bf38-cac3-40e4-94fe-439de89ceeb5" message="#['[']#[vars.appName]:0003#[']'] - #['[']FlowName: #[flow.name]#[']'] request transformed going to send it to customer-proc  #[payload]"/>
+		<customer-process-api:create-customer doc:name="Create customer" doc:id="ed5eba1d-245d-436a-8db5-81f4b9c60f04" config-ref="Customer_Process_API_Config" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}"/>
+		<logger level="INFO" doc:name="end Flow" doc:id="2b9da294-6bb0-4b18-b07f-e0959d8a0918" message="#['[']#[vars.appName]:0004#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from Customer Proc API going to send back to calling API. #[payload]"/>
+	</sub-flow>
 </mule>

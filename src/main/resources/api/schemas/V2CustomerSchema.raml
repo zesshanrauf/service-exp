@@ -1,0 +1,162 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  regDate?: number
+  VATRegistrationNumber?: string
+  isEmployee?: boolean
+  email1?:
+    type: object
+    properties:
+      isPrimary?: boolean
+      numbacceptTransactionaler?:  boolean
+      email?: string
+      acceptMarketing?:  boolean
+  email2?:
+    type: object
+    properties:
+      isPrimary?:  boolean
+      numbacceptTransactionaler?:  boolean
+      email?: string
+      acceptMarketing?:  boolean
+  customLookup12?: string
+  title?: string
+  middleName?: string
+  customLookup10?: string
+  memberCode?: string
+  birthYear?: string
+  tokenAccount?:
+    type: object
+    properties:
+      lastTransactionTime?: string
+      balance?: string
+  overrideMembershipLevelID?: string
+  creationDate?: number
+  gender?: string
+  defaultGiftcardID?: string
+  defaultLocationCode?: string
+  modifyDate?: number
+  membershipEndDate?: string
+  membershipLevelName?: string
+  birthMonth?: string
+  externalID?: string
+  defaultShippingAddressID?: string
+  customText6?: string
+  customText5?: string
+  customText4?: string
+  customText3?: string
+  customText2?: string
+  customText1?: string
+  lrpAccount?:
+    type: object
+    properties:
+      lrp2LastTransactionTime?: string
+      lrp1Balance?: string
+      lrp1LifetimeBalance?: string
+      lrp2Balance?: string
+      lrp2LifetimeBalance?: string
+      lrp1LastTransactionTime?: number
+  preferredLocationID?: string
+  phone1?:
+    type: object
+    properties:
+      isPrimary?: string
+      number?: string
+      numberDigits?: string
+  phone2?:
+    type: object
+    properties:
+      isPrimary?:  boolean
+      number?: string
+      numberDigits?: string
+  phone3?:
+    type: object
+    properties:
+      isPrimary?:  boolean
+      number?: string
+      numberDigits?: string
+  phone4?:
+    type: object
+    properties:
+      isPrimary?:  boolean
+      number?: string
+      numberDigits?: string
+  isTaxExempt?:  boolean
+  isLRP1ConversionDisabled?: string
+  birthDay?: string
+  lastName?: string
+  defaultLocationID?: string
+  customGuid11?: string
+  addresses?:
+    type: array
+    items: !include v2CustomerAddress.raml
+  customGuid10?: string
+  customFlag6?:  boolean
+  customFlag4?:  boolean
+  customFlag5?:  boolean
+  customFlag2?:  boolean
+  customFlag3?:  boolean
+  customFlag1?:  boolean
+  primaryContactID?: string
+  accountStatusID?: string
+  magentoID?: string
+  membershipLevelID?: string
+  priceLevelCode?: string
+  isLRP2ConversionDisabled?: string
+  customLookup4?: string
+  membershipType?: string
+  overrideMembershipEndDate?: string
+  largeMemo?: string
+  firstName?: string
+  editDate?: number
+  newPassword?: string
+  suffix?: string
+  preferredLocationCode?: string
+  customLookup8?: string
+  customLookup9?: string
+  customGuid12?: string
+  customLookup1?: string
+  customLookup2?: string
+  customLookup3?: string
+  isCompany?: boolean
+  customLookup5?: string
+  customLookup6?: string
+  customLookup7?: string
+  overrideMembershipLevelName?: string
+  customGuid4?: string
+  customGuid7?: string
+  customDate4?: string
+  customDate5?: string
+  customDate6?: string
+  customLookup11?: string
+  defaultBillingAddressID?: string
+  customDate1?: string
+  customDate2?: string
+  customDate3?: string
+  customNumber3?: number
+  status?: string
+  customNumber1?: number
+  customGuid6?: string
+  customDecimal4?: string
+  customDecimal5?: string
+  customDecimal6?: string
+  customerID?: string
+  customDecimal2?: string
+  customDecimal3?: string
+  scAccount?:
+    type: object
+    properties:
+      lastTransactionTime?: string
+      balance?: string
+  customDecimal1?: string
+  customGuid5?: string
+  customNumber6?: number
+  customNumber5?: number
+  customNumber4?: number
+  customGuid1?: string
+  customNumber2?: number
+  customGuid3?: string
+  customGuid2?: string
+  organization?: string
+  customGuid9?: string
+  customGuid8?: string

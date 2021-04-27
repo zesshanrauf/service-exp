@@ -22,10 +22,25 @@ types:
   createGiftCardResponseType: !include schemas/giftcard/create-giftcard-responseType.raml
   authorizeTransactionGiftCardRequestType: !include schemas/giftcard/authorizeTransaction-giftcard-requestType.raml  
   paymentReversalRequestType: !include schemas/giftcard/paymentReversal-giftcard-requestType.raml
+  v2CreateCustomer: !include schemas/V2CustomerSchema.raml
   emailTypes:
     type: string
     enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard, passwordchanged, newslettersignup ]
 
+/v2/customers:
+  post:
+    body:
+      application/json:
+        type: v2CreateCustomer
+        examples:
+          input: !include examples/V2CustomerRequest.json
+    responses:
+      200:
+        body:
+          application/json:
+            examples:
+              output: 
+                message: request received.
 /customers:
   post:
     body:
@@ -268,7 +283,7 @@ types:
         500:
           body:
             application/json:
-              example: !include examples/badrequest.json
+              example: !include examples/badrequest.json 
 /emails:
   /{emailType}:
     uriParameters:
