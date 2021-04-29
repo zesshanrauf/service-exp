@@ -202,6 +202,6 @@ output application/json
         <flow-ref doc:name="giftcards-paymentReversal-subFlow" doc:id="1ddc3026-a11b-42d4-97c0-4144307cbc52" name="giftcards-paymentReversal-subFlow" />
     </flow>
     <flow name="post:\v2\customers:application\json:service-exp-config">
-		<flow-ref doc:name="v2-customer-implementation-subFlow" doc:id="c1b79997-01e7-482e-9f79-074287890c8b" name="v2-customer-implementation-subFlow"/>
+        <flow-ref doc:name="v2-customer-implementation-subFlow" doc:id="c1b79997-01e7-482e-9f79-074287890c8b" name="v2-customer-implementation-subFlow" />
     </flow>
 </mule>

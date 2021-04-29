@@ -1,4 +1,5 @@
 {
+  "sourceSystem": "",
   "entries": [
     {
       "customerID": "0D84559D-28DD-4EBA-BB52-857C0D3A7983",
@@ -14,8 +15,8 @@
       "membershipEndDate": 1489067926000,
       "overrideMembershipLevelID": "98F65B3F-012E-43E1-AB21-A93069B52B58",
       "overrideMembershipLevelName": "Silver",
-      "overrideMembershipEndDate ": 1489067926000,
-      "password ": "very_secure_password",
+      "overrideMembershipEndDate": 1489067926000,
+      "password": "very_secure_password",
       "email1": {
         "email": "jsmith@example.com",
         "acceptMarketing": true,
@@ -41,7 +42,7 @@
       "title": "Mr.",
       "firstName": "John",
       "middleName": "T.",
-      "lastName ": "Smith",
+      "lastName": "Smith",
       "suffix": "-san",
       "gender": 1,
       "birthDay": 22,
