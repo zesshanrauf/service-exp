@@ -1,6 +1,9 @@
 customer:
   proc:
-    host: "customer-proc.us-e1.cloudhub.io"
+    host: "customer-proc-qa.us-e1.cloudhub.io"
+    basePath: "/api/"
+    protocol: "HTTP"
+    port: "80"
     basePathCustomers: "/api/customers"
     basePathGetCustomers: "/api/customers/{id}"
     basePathCheckByEmail: "/api/customers/checkbyemail"
@@ -8,10 +11,10 @@ customer:
     client_secret: "![wUGyPvrZgpvB3oeP1K89+cfQJ7n0Z631aDk7sp4c770vDlVx0If1ew==]"
 order:
   proc:
-    host: "order-proc.us-e1.cloudhub.io"
+    host: "order-proc-qa.us-e1.cloudhub.io"
     port: ""
     basePathOrdersHistory: "/api/orders/history"
     client_id: "![JLXEBEbR4Al4ndEHFGfvTMENdJbQTPCOb2S1lVagvS6za7sKI76ctQ==]"
     client_secret: "![wUGyPvrZgpvB3oeP1K89+cfQJ7n0Z631aDk7sp4c770vDlVx0If1ew==]"
 api:
-  apiKey: ""
+  apiKey: "![5HI9ZaS5rZWV1ni0KlZ3nQ==]"
