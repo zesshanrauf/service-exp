@@ -43,6 +43,7 @@ types:
                 message: request received.
 /customers:
   post:
+    is: [client-id-required]
     body:
       application/json:
         type: customerCreateUpdate
@@ -56,6 +57,7 @@ types:
               output: 
                 message: request received.
   get:
+    is: [client-id-required]
     queryParameters: 
       email:
         description: Email to get Customer record.
