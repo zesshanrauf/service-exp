@@ -152,6 +152,20 @@ types:
             application/json:
               examples:
                 output: !include examples/orderHistoryDetailsResponse.json
+  /getfraudstatus:
+    description: Get Fraud Status of Order
+    is: [client-id-required]
+    post:
+      body:
+          application/json:
+            examples:
+              output: !include examples/orderfraudstatusrequest.json          
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: !include examples/orderfraudstatusresponse.json
 /product:
   is: [client-id-required]
   post:

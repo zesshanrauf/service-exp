@@ -204,4 +204,7 @@ output application/json
     <flow name="post:\v2\customers:application\json:service-exp-config">
         <flow-ref doc:name="v2-customer-implementation-subFlow" doc:id="c1b79997-01e7-482e-9f79-074287890c8b" name="v2-customer-implementation-subFlow" />
     </flow>
+    <flow name="post:\orders\getfraudstatus:application\json:service-exp-config">
+		<flow-ref doc:name="Call get-orderFraudStatus-subFlow" doc:id="38655980-ca6c-41f2-9a05-45f79b34196c" name="get-orderFraudStatus-subFlow"/>
+    </flow>
 </mule>

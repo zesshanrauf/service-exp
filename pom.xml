@@ -63,7 +63,7 @@
     	<dependency>
             <groupId>a2403be9-9b13-4371-bb0c-471264adc637</groupId>
             <artifactId>mule-plugin-order-proc</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.6</version>
             <classifier>mule-plugin</classifier>
         </dependency>
     	<dependency>

@@ -26,6 +26,8 @@
         "api/examples/giftcard/giftcard.json",
         "api/examples/giftcard/paymentReversal-giftcard-request.json",
         "api/examples/giftcard/paymentReversal-giftcard-response.json",
+        "api/examples/orderfraudstatusrequest.json",
+        "api/examples/orderfraudstatusresponse.json",
         "api/examples/orderHistoryDetailsResponse.json",
         "api/examples/orderHistoryExample.json",
         "api/examples/orderResponse.json",

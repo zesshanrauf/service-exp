@@ -1,0 +1,88 @@
+{
+  "Orders": [
+    {
+      "ID": "00006001",
+      "Date": "2021-05-11T18:14:46.000Z",
+      "Email": "muneer.sial@onestepretail.com",
+      "TotalItems": 1,
+      "TotalOrder": 40,
+      "TotalShipping": 0,
+      "IP": null,
+      "Currency": "USD",
+      "Payments": [
+        {
+          "Date": "2021-05-11T18:14:46.000Z",
+          "Type": 1,
+          "CardNumber": null,
+          "CardHolderName": null,
+          "CardExpirationDate": "null/null",
+          "Amount": 40,
+          "PaymentTypeID": 1,
+          "CardType": 4
+        }
+      ],
+      "BillingData": {
+        "ID": 45,
+        "Type": 1,
+        "BirthDate": "1990-01-01T00:00:00",
+        "Gender": "M",
+        "Name": "MUNEER SIAL",
+        "Email": "muneer.sial@onestepretail.com",
+        "Address": {
+          "Street": "321 MAIN STREET",
+          "City": "UTICA",
+          "State": "NY",
+          "Comp": null,
+          "ZipCode": "13501",
+          "Country": "United States",
+          "Number": ""
+        },
+        "Phones": [
+          {
+            "Type": 0,
+            "CountryCode": 1,
+            "AreaCode": 0,
+            "Number": "3333333333"
+          }
+        ]
+      },
+      "ShippingData": {
+        "ID": 45,
+        "Type": 1,
+        "Name": "MUNEER SIAL",
+        "Gender": "M",
+        "Email": "muneer.sial@onestepretail.com",
+        "BirthDate": "1990-01-01T00:00:00",
+        "Address": {
+          "Street": "321 MAIN STREET",
+          "City": "UTICA",
+          "State": "NY",
+          "Comp": null,
+          "ZipCode": "13501",
+          "Country": "United States",
+          "Number": ""
+        },
+        "Phones": [
+          {
+            "Type": 0,
+            "CountryCode": 1,
+            "AreaCode": 0,
+            "Number": "3333333333"
+          }
+        ]
+      },
+      "Items": [
+        {
+          "ProductId": "VIRTUALGIFTCARD-50",
+          "ProductTitle": "Havaianas Virtual Gift Card",
+          "Price": 50,
+          "Category": null,
+          "Quantity": 1
+        }
+      ],
+      "SessionID": "498e353031ffeb900be4e94fc6498e353031"
+    }
+  ],
+  "AnalysisLocation": "USA",
+  "Reanalysis": false
+}
