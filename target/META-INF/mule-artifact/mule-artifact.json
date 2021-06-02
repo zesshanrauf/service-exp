@@ -46,6 +46,7 @@
         "api/schemas/historySHortDescriptions.raml",
         "api/schemas/orderHistory.raml",
         "api/schemas/productSchema.raml",
+        "api/schemas/transactionalEmail.raml",
         "api/schemas/v2CustomerAddress.raml",
         "api/schemas/V2CustomerSchema.raml",
         "api/service-exp.raml",

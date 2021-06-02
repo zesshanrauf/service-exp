@@ -15,6 +15,7 @@ traits:
 
 types:
   orderHistory: !include schemas/orderHistory.raml
+  transactionalEmail: !include schemas/transactionalEmail.raml
   product: !include schemas/productSchema.raml
   customerCreateUpdate: !include schemas/createCustomerSchema.raml
   getCustomerSchema: !include schemas/getCustomerRequestSchema.raml
@@ -316,3 +317,19 @@ types:
             application/json:
               examples:
                 output: message received.
+  /transactional:
+    post:
+      queryParameters: 
+        externalKey:
+          description: Email to get Customer record.
+          type: string
+          required: true
+      body:
+        application/json:
+          type : object
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: Email received.

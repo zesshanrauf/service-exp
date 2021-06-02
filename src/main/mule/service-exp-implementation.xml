@@ -128,6 +128,10 @@ payload]]></ee:set-payload>
 		<customer-process-api:create-email-by-email-type doc:name="Create email by email type" doc:id="00801ba3-0e8b-4945-b64f-4abd953577bf" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}" config-ref="Customer_Process_API_Config" email-type="#[attributes.uriParams.'emailType']"/>
 		<logger level="INFO" doc:name="Logger" doc:id="bdb02802-4814-49cd-94cf-2955585c21a6" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from Customer Proc API going to send back to calling API. #[payload]"/>
 	</sub-flow>
+	<sub-flow name="send-transcational-email-request-to-customerProc" doc:id="1256b1ec-bf4f-42e7-8a00-1dce0731e846" >
+		<logger level="INFO" doc:name="start" doc:id="bad761de-7bcd-48e1-9658-ba641da55d85" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Request recieved to trigger email at transactional endpoint going to send it to Customer Proc API." />
+		<logger level="INFO" doc:name="End" doc:id="4dd567da-9563-4b4f-9bce-5764dd595796" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from Customer Proc API going to send back to calling API. #[payload]" />
+	</sub-flow>
 	<sub-flow name="v2-customer-implementation-subFlow" doc:id="dcfd608c-5d0e-44a0-93d2-3b6d236dc301" >
 		<logger level="INFO" doc:name="Start Flow" doc:id="0a4443c4-f729-4968-b7ef-db3e1fb28cab" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] request received from webhook going to convert it to json #[payload]"/>
 		<ee:transform doc:name="input/json payload" doc:id="98d01e43-2fce-4533-b067-7d8299999010">

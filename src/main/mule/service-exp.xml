@@ -205,6 +205,9 @@ output application/json
         <flow-ref doc:name="v2-customer-implementation-subFlow" doc:id="c1b79997-01e7-482e-9f79-074287890c8b" name="v2-customer-implementation-subFlow" />
     </flow>
     <flow name="post:\orders\getfraudstatus:application\json:service-exp-config">
-		<flow-ref doc:name="Call get-orderFraudStatus-subFlow" doc:id="38655980-ca6c-41f2-9a05-45f79b34196c" name="get-orderFraudStatus-subFlow"/>
+        <flow-ref doc:name="Call get-orderFraudStatus-subFlow" doc:id="38655980-ca6c-41f2-9a05-45f79b34196c" name="get-orderFraudStatus-subFlow" />
+    </flow>
+    <flow name="post:\emails\transactional:application\json:service-exp-config">
+		<flow-ref doc:name="call send-transcational-email-request-to-customerProc" doc:id="d5813c4b-f595-4031-847f-2c43d185e9ec" name="send-transcational-email-request-to-customerProc"/>
     </flow>
 </mule>
