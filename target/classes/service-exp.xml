@@ -207,7 +207,13 @@ output application/json
     <flow name="post:\orders\getfraudstatus:application\json:service-exp-config">
         <flow-ref doc:name="Call get-orderFraudStatus-subFlow" doc:id="38655980-ca6c-41f2-9a05-45f79b34196c" name="get-orderFraudStatus-subFlow" />
     </flow>
-    <flow name="post:\emails\transactional:application\json:service-exp-config">
-		<flow-ref doc:name="call send-transcational-email-request-to-customerProc" doc:id="d5813c4b-f595-4031-847f-2c43d185e9ec" name="send-transcational-email-request-to-customerProc"/>
+    <flow name="delete:\customers:application\json:service-exp-config">
+        <logger level="INFO" message="delete:\customers:application\json:service-exp-config" />
+    </flow>
+    <flow name="post:\emails\orderCancelled:application\json:service-exp-config">
+		<flow-ref doc:name="Call send-orderCancelled-email-customer-proc" doc:id="4d68e3d1-e692-48a9-926c-0c25afe03927" name="send-orderCancelled-email-customer-proc"/>
+    </flow>
+    <flow name="post:\emails\orderShipped:application\json:service-exp-config">
+		<flow-ref doc:name="Call send-orderShipped-email-customer-proc" doc:id="3cb82848-0b6f-4919-8720-db310715f7bd" name="send-orderShipped-email-customer-proc"/>
     </flow>
 </mule>

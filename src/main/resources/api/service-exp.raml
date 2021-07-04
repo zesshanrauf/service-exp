@@ -24,6 +24,9 @@ types:
   authorizeTransactionGiftCardRequestType: !include schemas/giftcard/authorizeTransaction-giftcard-requestType.raml  
   paymentReversalRequestType: !include schemas/giftcard/paymentReversal-giftcard-requestType.raml
   v2CreateCustomer: !include schemas/V2CustomerSchema.raml
+  deleteCustomerSchema: !include schemas/deleteCustomerRequestSchema.raml
+  OrderCanceledEmail: !include schemas/emails/orderCancelledEmail.raml
+  OrderShippedEmail: !include schemas/emails/orderShippedEmail.raml
   emailTypes:
     type: string
     enum: [ createaccount, accountedited, passwordreset, orderconfirmation, 	ordercanceled, giftcard, passwordchanged, newslettersignup, legacyCustomerPasswordReset ]
@@ -70,6 +73,16 @@ types:
         body: 
           application/json:
             example: !include examples/getCustomerResponse.json
+  delete:
+    displayName: Delete customer account
+    description: this endpoint will be used to delete customer account.
+    body:
+      application/json:
+        type: deleteCustomerSchema
+        examples:
+          input: !include examples/deleteCustomerRequest.json
+    responses:
+      200:
   /{id}:
     is: [client-id-required]
     get:
@@ -317,16 +330,36 @@ types:
             application/json:
               examples:
                 output: message received.
-  /transactional:
+  /orderShipped:
+    is: [client-id-required]
     post:
+      displayName: Send OrderShipped Email
       queryParameters: 
         externalKey:
-          description: Email to get Customer record.
           type: string
-          required: true
       body:
         application/json:
-          type : object
+          type : OrderShippedEmail
+          examples:
+           input: !include examples/emails/orderShippedEmail.json
+      responses:
+        200:
+          body:
+            application/json:
+              examples:
+                output: Email received.
+  /orderCancelled:
+    is: [client-id-required]
+    post:
+      displayName: Send orderCancelled Email
+      queryParameters:
+        externalKey:
+          type: string
+      body:
+        application/json:
+          type : OrderCanceledEmail
+          examples:
+           input: !include examples/emails/orderCancelledEmail.json
       responses:
         200:
           body:

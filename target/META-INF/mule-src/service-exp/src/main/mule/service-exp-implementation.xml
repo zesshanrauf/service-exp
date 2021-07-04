@@ -128,9 +128,15 @@ payload]]></ee:set-payload>
 		<customer-process-api:create-email-by-email-type doc:name="Create email by email type" doc:id="00801ba3-0e8b-4945-b64f-4abd953577bf" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}" config-ref="Customer_Process_API_Config" email-type="#[attributes.uriParams.'emailType']"/>
 		<logger level="INFO" doc:name="Logger" doc:id="bdb02802-4814-49cd-94cf-2955585c21a6" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from Customer Proc API going to send back to calling API. #[payload]"/>
 	</sub-flow>
-	<sub-flow name="send-transcational-email-request-to-customerProc" doc:id="1256b1ec-bf4f-42e7-8a00-1dce0731e846" >
-		<logger level="INFO" doc:name="start" doc:id="bad761de-7bcd-48e1-9658-ba641da55d85" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Request recieved to trigger email at transactional endpoint going to send it to Customer Proc API." />
-		<logger level="INFO" doc:name="End" doc:id="4dd567da-9563-4b4f-9bce-5764dd595796" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from Customer Proc API going to send back to calling API. #[payload]" />
+	<sub-flow name="send-orderCancelled-email-customer-proc" doc:id="416fd868-e249-4059-8093-daf0147a42de" >
+		<logger level="INFO" doc:name="Start" doc:id="2214a23e-b4d4-4c74-a038-70807798dc1f" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Request recieved to trigger orderCancelled email. #[payload]"/>
+		<customer-process-api:send-ordercancelled-email doc:name="Send orderCancelled Email" doc:id="1f3ebdd1-6936-46cb-a42d-dbee0e850e46" config-ref="Customer_Process_API_Config" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}" external-key="#[attributes.queryParams.'externalKey']"/>
+		<logger level="INFO" doc:name="End" doc:id="5e895004-28ae-4bad-adcb-cca827ff643a" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from customer-proc going to send back to calling API. #[payload]"/>
+	</sub-flow>
+	<sub-flow name="send-orderShipped-email-customer-proc" doc:id="2c86e549-731d-44f4-8363-4a445ada30fc" >
+		<logger level="INFO" doc:name="Start" doc:id="57ceb715-f3b1-43de-afb7-98a9f1213fa8" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] Request recieved to trigger orderShipped email. #[payload]"/>
+		<customer-process-api:send-ordershipped-email doc:name="Send OrderShipped Email" doc:id="c321a48f-4a2e-4e0b-99db-977d21d576ed" config-ref="Customer_Process_API_Config" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}" external-key="#[attributes.queryParams.'externalKey']"/>
+		<logger level="INFO" doc:name="End" doc:id="1c456702-8ab8-4307-a595-715aaf0f2201" message="#['[']#[vars.appName]:0002#[']'] - #['[']FlowName: #[flow.name]#[']'] Response received from customer-proc going to send back to calling API. #[payload]"/>
 	</sub-flow>
 	<sub-flow name="v2-customer-implementation-subFlow" doc:id="dcfd608c-5d0e-44a0-93d2-3b6d236dc301" >
 		<logger level="INFO" doc:name="Start Flow" doc:id="0a4443c4-f729-4968-b7ef-db3e1fb28cab" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']'] request received from webhook going to convert it to json #[payload]"/>

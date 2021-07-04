@@ -1,0 +1,20 @@
+{
+  "SubscriberKey": "zeeshan.rauf@onestepretail.com",
+  "EmailAddress": "zeeshan.rauf@onestepretail.com",
+  "OrderNo": "123456879",
+  "OrderCreationDate": "04/01/2021",
+  "BillToContactFirstName": "zeeshan",
+  "BillToContactLastName": "rauf",
+  "BillToContactAddress1": "lahore",
+  "BillToContactCity": "lahore",
+  "BillToContactState": "lahore",
+  "BillToContactzip": "123456",
+  "BillToContactprimaryPhone": "123456789",
+  "ShipToContact": "123456789",
+  "Payments": "123465",
+  "Discount": "12",
+  "ItemNames": "test",
+  "SubTotal": "123456",
+  "Tax": "123",
+  "OrderTotal": "12345649"
+}
