@@ -14,17 +14,17 @@ traits:
         type: string
 
 types:
-  orderHistory: !include schemas/orderHistory.raml
-  transactionalEmail: !include schemas/transactionalEmail.raml
+  orderHistory: !include /schemas/Order-history/orderHistory.raml
+  transactionalEmail: !include /schemas/emails/transactionalEmail.raml
   product: !include schemas/productSchema.raml
-  customerCreateUpdate: !include schemas/createCustomerSchema.raml
-  getCustomerSchema: !include schemas/getCustomerRequestSchema.raml
+  customerCreateUpdate: !include /schemas/customer/createCustomerSchema.raml
+  getCustomerSchema: !include /schemas/customer/getCustomerRequestSchema.raml
   createGiftCardRequestType: !include schemas/giftcard/create-giftcard-requestType.raml
   createGiftCardResponseType: !include schemas/giftcard/create-giftcard-responseType.raml
   authorizeTransactionGiftCardRequestType: !include schemas/giftcard/authorizeTransaction-giftcard-requestType.raml  
   paymentReversalRequestType: !include schemas/giftcard/paymentReversal-giftcard-requestType.raml
-  v2CreateCustomer: !include schemas/V2CustomerSchema.raml
-  deleteCustomerSchema: !include schemas/deleteCustomerRequestSchema.raml
+  v2CreateCustomer: !include /schemas/customer/V2CustomerSchema.raml
+  deleteCustomerSchema: !include /schemas/customer/deleteCustomerRequestSchema.raml
   OrderCanceledEmail: !include schemas/emails/orderCancelledEmail.raml
   OrderShippedEmail: !include schemas/emails/orderShippedEmail.raml
   emailTypes:
@@ -37,7 +37,7 @@ types:
       application/json:
         type: v2CreateCustomer
         examples:
-          input: !include examples/V2CustomerRequest.json
+          input: !include /examples/customer/V2CustomerRequest.json
     responses:
       200:
         body:
@@ -52,7 +52,7 @@ types:
       application/json:
         type: customerCreateUpdate
         examples:
-          input: !include examples/createCustomerRequest.json
+          input: !include /examples/customer/createCustomerRequest.json
     responses:
       201:
         body:
@@ -72,7 +72,7 @@ types:
       200:
         body: 
           application/json:
-            example: !include examples/getCustomerResponse.json
+            example: !include /examples/customer/getCustomerResponse.json
   delete:
     displayName: Delete customer account
     description: this endpoint will be used to delete customer account.
@@ -80,7 +80,7 @@ types:
       application/json:
         type: deleteCustomerSchema
         examples:
-          input: !include examples/deleteCustomerRequest.json
+          input: !include /examples/customer/deleteCustomerRequest.json
     responses:
       200:
   /{id}:
@@ -91,7 +91,7 @@ types:
           body:
             application/json:
               examples:
-                output: !include examples/getCustomerResponse.json
+                output: !include /examples/customer/getCustomerResponse.json
   /checkbyemail:
     is: [client-id-required]
     get:
@@ -105,7 +105,7 @@ types:
         200:
           body: 
             application/json:
-              example: !include examples/checkByEmailResponse.json
+              example: !include /examples/emails/checkByEmailResponse.json
 /orders:
   /history:
     is: [client-id-required]
@@ -130,7 +130,7 @@ types:
           body:
             application/json:
               examples:
-                output: !include examples/orderResponse.json
+                output: !include /examples/Order-history/orderResponse.json
   /historydetails:
     description: Order History Details
     is: [client-id-required]
@@ -165,7 +165,7 @@ types:
           body:
             application/json:
               examples:
-                output: !include examples/orderHistoryDetailsResponse.json
+                output: !include /examples/Order-history/orderHistoryDetailsResponse.json
   /getfraudstatus:
     description: Get Fraud Status of Order
     is: [client-id-required]
@@ -173,13 +173,13 @@ types:
       body:
           application/json:
             examples:
-              output: !include examples/orderfraudstatusrequest.json          
+              output: !include /examples/Order-history/orderfraudstatusrequest.json       
       responses:
         200:
           body:
             application/json:
               examples:
-                output: !include examples/orderfraudstatusresponse.json
+                output: !include /examples/Order-history/orderfraudstatusresponse.json
 /product:
   is: [client-id-required]
   post:

@@ -12,6 +12,19 @@ http://www.mulesoft.org/schema/mule/customer-process-api http://www.mulesoft.org
 	</http:request-config>
 	
 	<customer-process-api:config name="Customer_Process_API_Config" doc:name="Customer Process API Config" doc:id="3d51c845-2e60-4c20-82eb-ebcdc905da62" property_host="${customer.proc.host}" property_port="${customer.proc.port}" property_protocol="${customer.proc.protocol}" property_basePath="${customer.proc.basePath}" />
+	<sub-flow name="deletecustomer-implementationSubFlow" doc:id="a6ec8f5f-b772-4506-80f4-faeeb7530198" >
+		<ee:transform doc:name="into json" doc:id="fb4927bd-fa6c-439f-ac26-5704979e2c30">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Request" doc:id="bc108780-a35f-47c7-8edd-56f83259af34" message="#['[']#[vars.appName]:0001#[']'] - #['[']FlowName: #[flow.name]#[']']Request send to delete customer in customer-proc API. #[payload]"/>
+		<customer-process-api:delete-customer-account doc:name="Delete customer account" doc:id="89e33c79-f0de-4eab-a252-b34f4a44968c" config-ref="Customer_Process_API_Config" client-id="${secure::customer.proc.client_id}" client-secret="${secure::customer.proc.client_secret}" />
+		<logger level="INFO" doc:name="Response" doc:id="466f7789-a74e-489f-a66a-8c7e9e57ef73" message="#['[']#[vars.appName]:0002#[']']Response received form customer-proc API for delete  customer. #[payload]" />
+	</sub-flow>
 	<sub-flow name="sendRequestTo_Customer-proc" doc:id="f21f7ca3-5e6d-4053-869a-7b2e06b78d2c" >
 		<ee:transform doc:name="Transform Message" doc:id="375a728b-c30c-45d8-b105-f4096d843cdd">
 			<ee:message>

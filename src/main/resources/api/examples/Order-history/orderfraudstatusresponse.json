@@ -1,0 +1,11 @@
+{
+  "SendStatus": "true",
+  "SendResponse": {
+    "status": "NVO",
+    "transactionID": "831f54f8-e4db-461c-9939-6f982d2e31c9"
+  },
+  "GetStatus": "true",
+  "GetResponse": {
+    "status": "RPM"
+  }
+}
